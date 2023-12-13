@@ -42,7 +42,7 @@
         <section class="main">
             <div class="conversion-ctnr">
                 <div class="input-ctnr">
-                    <p>Enter value:</p>
+                    <p>Enter value</p>
                     <div class="input-w-label">
                         <input 
                             type="text" 
@@ -54,12 +54,13 @@
                     </div>
                 </div>
                 <div class="input-ctnr">
-                    <p>Result:</p>
+                    <p>Result</p>
                     <div class="input-w-label">
                         <input 
                             type="text" 
                             readonly 
                             id="result"
+                            placeholder="-"
                         >
                         <p id="secondary-label-text">...</p>
                     </div>
@@ -73,7 +74,7 @@
                 <button class="btn" onclick="clearInput()">Clear</button>
             </div>
             
-            <div class="calculation-ctnr input-box">
+            <div class="calculation-ctnr input-box" onclick="copyCalculation()">
                 <p>Calculation</p>
                 <!-- <hr> -->
                 <div id="calculation">...</div>

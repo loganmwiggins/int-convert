@@ -59,16 +59,6 @@ input,
     border-radius: 1rem;
     cursor: pointer;
 }
-.btn {
-    font-family: "Poppins-Regular";
-    font-size: 1.5rem;
-    background-color: lightgrey;
-    padding: 1rem 2rem;
-    margin-right: 1rem;
-    border: none;
-    border-radius: 1rem;
-    cursor: pointer;
-}
 
 
 /* DISPLAY WINDOW */
@@ -120,13 +110,15 @@ hr {
 /* Window Body */
 .input-ctnr {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     width: 65%;
     padding: 1rem 0;
-    p { flex: 1; }
+    p { 
+        font-size: 1.5rem; 
+        /* opacity: .75; */
+    }
 }
 .input-w-label {
-    flex: 3;
     display: flex;
     align-items: center;
     input {
@@ -145,21 +137,45 @@ hr {
     display: flex;
     margin: 2rem 0;
 }
+.btn {
+    font-family: "Poppins-Regular";
+    font-size: 1.5rem;
+    background-color: lightgrey;
+    padding: 1rem 2rem;
+    margin-right: 1rem;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color .15s ease;
+}
+.btn:hover {
+    background-color: rgb(190, 190, 190);
+    transition: background-color .15s ease;
+}
 
 .calculation-ctnr {
     width: 100%;
+    max-height: 165px;
     max-width: fit-content;
     padding: 1rem 2rem;
     margin: 3rem 0;
-    hr { margin: 0 0 1rem 0; }
+    overflow-y: scroll;
     p { 
         font-size: 1.5rem; 
         opacity: .75;
-        /* margin-bottom: .5rem; */
     }
 }
-#calculation {
+.calculation-ctnr::-webkit-scrollbar { width: 1rem; }
+.calculation-ctnr::-webkit-scrollbar-track { background: none; }
+.calculation-ctnr::-webkit-scrollbar-thumb {
+    background: lightgrey;
+    border-radius: 2rem;
+    cursor: grab;
 }
+.calculation-ctnr::-webkit-scrollbar-thumb:hover {
+    background: rgb(190, 190, 190);
+}
+/* #calculation {} */
 
 
 

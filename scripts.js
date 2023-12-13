@@ -25,6 +25,7 @@ function setTitle() {
     intInput.value = "";
     result.value = "";
     calculation.innerHTML = "";
+    calculation.style.marginTop = "0";
 }
 
 function swapTypes() {
@@ -34,10 +35,16 @@ function swapTypes() {
     setTitle();
 }
 
+function copyCalculation() {
+    navigator.clipboard.writeText(calculation.innerHTML.toString());
+    alert("Copied " + calculation + " to clipboard");
+}
+
 function clearInput() {
     intInput.value = "";
     result.value = "";
     calculation.innerHTML = "";
+    calculation.style.marginTop = "0";
 }
 
 function convertInput() {
@@ -56,9 +63,6 @@ function convertInput() {
     else {
         result.value = intInput.value;
     }
-
-
-
 }
 
 // ... to Decimal
@@ -85,6 +89,7 @@ function binToDec(num)
         }
     }
     calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
+    calculation.style.marginTop = ".5rem";  // Add margin to output
 
     return decNum;
 }
@@ -112,6 +117,7 @@ function octToDec(num)
         }
     }
     calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
+    calculation.style.marginTop = ".5rem";  // Add margin to output
 
     return decNum;
 }
@@ -131,21 +137,27 @@ function hexToDec(num)
         switch(currDigit)   // Change alpha characters to nums
         {
             case('A'):
+            case('a'):
                 currDigit = 10;
                 break;
             case('B'):
+            case('b'):
                 currDigit = 11;
                 break;
             case('C'):
+            case('c'):
                 currDigit = 12;
                 break;
             case('D'):
+            case('d'):
                 currDigit = 13;
                 break;
             case('E'):
+            case('e'):
                 currDigit = 14;
                 break;
             case('F'):
+            case('f'):
                 currDigit = 15;
                 break;
         }
@@ -160,9 +172,28 @@ function hexToDec(num)
         }
     }
     calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
+    calculation.style.marginTop = ".5rem";  // Add margin to output
+
 
     return decNum;
 }
 
 
 // Decimal to ...
+
+
+
+
+function copyCalculation() {
+    let calcString = calculation.innerHTML;
+    if (calcString != "") {
+        navigator.clipboard.writeText(calcString);
+        alert("Copied calculation to clipboard");
+    } 
+    else {
+        alert("You need to make a conversion before copying a calculation.");
+        alert
+    }
+    
+    
+}
