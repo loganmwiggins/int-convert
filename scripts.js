@@ -43,6 +43,10 @@ function convertInput() {
     else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Decimal") {
         result.value = octToDec(intInput.value);
     }
+    // Hexadecimal to Decimal
+    else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Decimal") {
+        result.value = hexToDec(intInput.value);
+    }
     else {
         result.value = intInput.value;
     }
@@ -74,10 +78,11 @@ function binToDec(num)
             formula = " + (" + currDigit.toString() + " * 2^" + i + ")" + formula; 
         }
     }
-    calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula
+    calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
 
     return decNum;
 }
+
 function octToDec(num) 
 {
     let octNum = num;
@@ -100,11 +105,58 @@ function octToDec(num)
             formula = " + (" + currDigit.toString() + " * 8^" + i + ")" + formula; 
         }
     }
-    calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula
+    calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
 
     return decNum;
 }
 
+function hexToDec(num) 
+{
+    let hexNum = num.toString();
+    let hexNumLength = hexNum.length;
+    let decNum = 0;
+    let formula = "";
+
+    for (let i=0; i < hexNumLength; i++)
+    {
+        // Convert
+        let currDigit = hexNum[hexNumLength-i-1];
+
+        switch(currDigit)   // Change alpha characters to nums
+        {
+            case('A'):
+                currDigit = 10;
+                break;
+            case('B'):
+                currDigit = 11;
+                break;
+            case('C'):
+                currDigit = 12;
+                break;
+            case('D'):
+                currDigit = 13;
+                break;
+            case('E'):
+                currDigit = 14;
+                break;
+            case('F'):
+                currDigit = 15;
+                break;
+        }
+        decNum += currDigit * Math.pow(16, i);
+        
+        // Creating calculation formula string
+        if (i === parseInt(hexNumLength) - 1) {
+            formula = "(" + currDigit.toString() + " * 16^" + i + ")" + formula; 
+        }
+        else {
+            formula = " + (" + currDigit.toString() + " * 16^" + i + ")" + formula; 
+        }
+    }
+    calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
+
+    return decNum;
+}
 
 
 // Decimal to ...
