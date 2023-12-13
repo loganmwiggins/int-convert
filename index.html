@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Logan M. Wiggins">
+        <meta name="description" content="An integer conversion web application.">
+        <title>IntConvert</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <video autoplay muted loop class="bg-video">
+        <source src="assets/gradient-background-1.mp4" type="video/mp4">
+    </video>
+
+    <body>
+        <section class="header">
+            <div class="title">
+                <h1 id="primary-title">Binary</h1>
+                &nbsp;&nbsp;
+                <p>to <span id="secondary-title">Decimal</span></p>
+            </div>
+            <div class="selection">
+                <select name="primaryIntType" id="primary-int-type" class="dropdown-ctnr" onchange="setTitle()">
+                    <option class=".dropdown-item" value="Binary">Binary (base 2)</option>
+                    <option value="Octal">Octal (base 8)</option>
+                    <option value="Decimal">Decimal (base 10)</option>
+                    <option value="Hexadecimal">Hexadecimal (base 16)</option>
+                </select>
+                <img src="assets/icons/swap.svg" draggable="false" id="swap-btn" onclick="swapTypes()">
+                <select name="secondaryIntType" id="secondary-int-type" class="dropdown-ctnr" onchange="setTitle()">
+                    <option value="Binary">Binary (base 2)</option>
+                    <option value="Octal">Octal (base 8)</option>
+                    <option value="Decimal">Decimal (base 10)</option>
+                    <option value="Hexadecimal">Hexadecimal (base 16)</option>
+                </select>
+            </div>
+        </section>
+        <hr>
+        <section class="main">
+            <label for="">Enter <span id="label-text">x</span> value:</label>
+            <input type="number" placeholder="Integer value" id="int-input">
+            <br><br>
+            <label for="">Result:</label>
+            <input type="text" readonly id="result">
+        </section>
+    </body>
+
+    <script type="text/javascript" src="scripts.js"></script>
+</html>

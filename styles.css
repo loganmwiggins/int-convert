@@ -1,0 +1,103 @@
+/* FONTS */
+@font-face {
+    font-family: "Poppins-Regular";
+    src: url(assets/fonts/Poppins/Poppins-Regular.ttf);
+}
+@font-face {
+    font-family: "Poppins-Medium";
+    src: url(assets/fonts/Poppins/Poppins-Medium.ttf);
+}
+@font-face {
+    font-family: "Poppins-Bold";
+    src: url(assets/fonts/Poppins/Poppins-Bold.ttf);
+}
+
+/* COLOR VARS */
+:root {
+    --primary-color: rgb(255, 255, 255);
+    --secondary-color: rgb(0, 0, 0,);
+}
+.dark-theme { 
+    --primary-color: rgb(0, 0, 0,);
+    --secondary-color: rgb(255, 255, 255);
+}
+
+
+/* MAIN COMPONENTS */
+/*////////////////*/
+* {
+    padding: 0;
+    margin: 0;
+}
+html {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: var(--secondary-color); */
+    background-color: black;
+    font-family: "Poppins-Regular";
+    overflow-x: hidden;
+    min-width: 100vw;
+    min-height: 100vh;
+    font-size: 62.5%; /* sets base font size to 10px (easy to use rem sizing) */
+}
+.bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    z-index: -1;
+    opacity: .5;
+}
+body {
+    /* background: var(--primary-color); */
+    background-color: white;
+    width: 50%;
+    height: 600px;
+    max-width: 1400px; /* need a specific value to work */
+    max-height: 1400px;
+    border-radius: 1rem;
+    padding: 4rem;
+    font-size: 2rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img { 
+        max-width: 2rem; 
+        margin-left: 2rem; 
+        opacity: .75;
+        cursor: pointer;
+    }
+}
+.title {
+    display: flex;
+    align-items: baseline;
+    p { opacity: .75; }
+}
+hr { 
+    margin: 2rem 0; 
+    opacity: .5;
+}
+.selection {
+    display: flex;
+    align-items: center;
+}
+.dropdown-ctnr {
+    font-family: "Poppins-Regular";
+    margin-left: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+label { margin-right: 1rem; }
+input {
+    font-family: "Poppins-Regular";
+    padding: 1rem;
+    border: 1px solid grey;
+    border-radius: 1rem;
+    cursor: pointer;
+}
