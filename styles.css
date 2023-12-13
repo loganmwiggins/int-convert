@@ -52,6 +52,7 @@ html {
 }
 body {
     /* background: var(--primary-color); */
+    position: relative;
     background-color: white;
     width: 50%;
     height: 600px;
@@ -100,4 +101,32 @@ input {
     border: 1px solid grey;
     border-radius: 1rem;
     cursor: pointer;
+}
+#calculation {
+    width: 100%;
+}
+
+
+
+.footer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    /* background-color: rgb(235, 235, 235); */
+    width: 50%;
+    bottom: 0;
+    right: 0;
+    padding: 2rem 4rem;
+    img { 
+        max-width: 2.5rem; 
+        margin-left: 1.5rem; 
+        opacity: .25;
+        cursor: pointer;
+        transition: opacity .25s ease;
+    }
+    img:hover {
+        opacity: .5;
+        transition: opacity .25s ease;
+    }
 }

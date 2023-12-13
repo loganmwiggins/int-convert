@@ -39,11 +39,19 @@
         </section>
         <hr>
         <section class="main">
-            <label for="">Enter <span id="label-text">x</span> value:</label>
-            <input type="number" placeholder="Integer value" id="int-input">
+            <label for="">Enter <span id="primary-label-text">x</span> value:</label>
+            <input type="number" placeholder="Integer value" id="int-input" onchange="convertInput()">
             <br><br>
-            <label for="">Result:</label>
+            <label for="">Result (in <span id="secondary-label-text">x</span>):</label>
             <input type="text" readonly id="result">
+            <br><br>
+            <label for="">Calculation:</label>
+            <input type="text" readonly id="calculation">
+        </section>
+        <section class="footer">
+            <img src="assets/icons/apps.svg">
+            <img src="assets/icons/question-mark.svg">
+            <img src="assets/icons/settings.svg">
         </section>
     </body>
 

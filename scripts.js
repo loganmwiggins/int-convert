@@ -4,9 +4,11 @@ let secondaryIntType = document.getElementById("secondary-int-type");
 let primaryTitle = document.getElementById("primary-title");
 let secondaryTitle = document.getElementById("secondary-title");
 let swapBtn = document.getElementById("swap-btn");
-let labelText = document.getElementById("label-text");
+let primaryLabelText = document.getElementById("primary-label-text");
+let secondaryLabelText = document.getElementById("secondary-label-text");
 let intInput = document.getElementById("int-input");
 let result = document.getElementById("result");
+let calculation = document.getElementById("calculation");
 
 // On init
 setTitle();
@@ -16,7 +18,8 @@ setTitle();
 function setTitle() {
     primaryTitle.innerHTML = primaryIntType.value;
     secondaryTitle.innerHTML = secondaryIntType.value;
-    labelText.innerHTML = primaryIntType.value.toLowerCase();
+    primaryLabelText.innerHTML = primaryIntType.value.toLowerCase();
+    secondaryLabelText.innerHTML = secondaryIntType.value.toLowerCase();
 }
 
 function swapTypes() {
@@ -24,5 +27,34 @@ function swapTypes() {
     primaryIntType.value = secondaryIntType.value;
     secondaryIntType.value = temp;
     setTitle();
-    // swapBtn.classList.add("rotate");
+}
+
+function convertInput() {
+    // alert(intInput.value);
+    if (primaryIntType.value == "Binary" && secondaryIntType.value == "Decimal") {
+        result.value = binToDec(intInput.value);
+    }
+
+
+
+    // result.value = intInput.value;
+}
+
+function binToDec(num) {
+
+    let binNum = num;
+    let binNumLength = binNum.toString().length;
+    let decNum = 0;
+    let formula = "";
+
+    for (var i=0; i < binNumLength; i++)
+    {
+        var currDigit = binNum % 10;
+        formula +=  "(" + currDigit.toString() + " * 2^" + i + ") + "; 
+        decNum += currDigit * Math.pow(2, i);
+        binNum = Math.floor(binNum/10);
+    }
+    calculation.value = formula;
+
+    return decNum;
 }
