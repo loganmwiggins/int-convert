@@ -16,10 +16,16 @@ setTitle();
 
 
 function setTitle() {
+    // Set all text elements
     primaryTitle.innerHTML = primaryIntType.value;
     secondaryTitle.innerHTML = secondaryIntType.value;
     primaryLabelText.innerHTML = primaryIntType.value.toLowerCase();
     secondaryLabelText.innerHTML = secondaryIntType.value.toLowerCase();
+
+    // Clear out input fields
+    intInput.value = "";
+    result.value = "";
+    calculation.value = "";
 }
 
 function swapTypes() {
@@ -49,12 +55,20 @@ function binToDec(num) {
 
     for (var i=0; i < binNumLength; i++)
     {
+        // Convert
         var currDigit = binNum % 10;
-        formula +=  "(" + currDigit.toString() + " * 2^" + i + ") + "; 
         decNum += currDigit * Math.pow(2, i);
         binNum = Math.floor(binNum/10);
+        
+        // Creating calculation formula string
+        if (i === parseInt(binNumLength) - 1) {
+            formula = "(" + currDigit.toString() + " * 2^" + i + ")" + formula; 
+        }
+        else {
+            formula = " + (" + currDigit.toString() + " * 2^" + i + ")" + formula; 
+        }
     }
-    calculation.value = formula;
+    calculation.value = formula;    // Output calculation formula
 
     return decNum;
 }
