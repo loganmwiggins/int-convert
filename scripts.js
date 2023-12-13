@@ -60,9 +60,7 @@ function convertInput() {
     else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Decimal") {
         result.value = hexToDec(intInput.value);
     }
-    else {
-        result.value = intInput.value;
-    }
+    else { result.value = intInput.value; }
 }
 
 // ... to Decimal
@@ -174,7 +172,6 @@ function hexToDec(num)
     calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
     calculation.style.marginTop = ".5rem";  // Add margin to output
 
-
     return decNum;
 }
 
@@ -191,9 +188,6 @@ function copyCalculation() {
         alert("Copied calculation to clipboard");
     } 
     else {
-        alert("You need to make a conversion before copying a calculation.");
-        alert
+        alert("You need to make a conversion before copying the calculation.");
     }
-    
-    
 }
