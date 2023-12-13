@@ -19,7 +19,7 @@
             <div class="title">
                 <h1 id="primary-title">Binary</h1>
                 &nbsp;&nbsp;
-                <p>to <span id="secondary-title">Decimal</span></p>
+                <h1>→ <span id="secondary-title">Decimal</span></h1>
             </div>
             <div class="selection">
                 <select name="primaryIntType" id="primary-int-type" class="dropdown-ctnr" onchange="setTitle()">
@@ -38,6 +38,7 @@
             </div>
         </section>
         <hr>
+
         <section class="main">
             <label for="">Enter <span id="primary-label-text">x</span> value:</label>
             <input type="number" placeholder="Integer value" id="int-input" onchange="convertInput()">
@@ -46,8 +47,9 @@
             <input type="text" readonly id="result">
             <br><br>
             <label for="">Calculation:</label>
-            <input type="text" readonly id="calculation">
+            <div class="input-box" id="calculation"></div>
         </section>
+
         <section class="footer">
             <img src="assets/icons/apps.svg">
             <img src="assets/icons/question-mark.svg">

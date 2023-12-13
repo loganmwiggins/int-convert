@@ -95,15 +95,20 @@ hr {
     cursor: pointer;
 }
 label { margin-right: 1rem; }
-input {
+input,
+.input-box {
+    width: 300px;
     font-family: "Poppins-Regular";
+    font-size: 2rem;
     padding: 1rem;
     border: 1px solid grey;
     border-radius: 1rem;
     cursor: pointer;
 }
 #calculation {
-    width: 100%;
+    width: 90%;
+    /* overflow: scroll !important;
+    text-wrap: wrap; */
 }
 
 
@@ -113,7 +118,6 @@ input {
     display: flex;
     align-items: center;
     justify-content: right;
-    /* background-color: rgb(235, 235, 235); */
     width: 50%;
     bottom: 0;
     right: 0;

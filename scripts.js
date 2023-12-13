@@ -13,8 +13,7 @@ let calculation = document.getElementById("calculation");
 // On init
 setTitle();
 
-
-
+// Functions
 function setTitle() {
     // Set all text elements
     primaryTitle.innerHTML = primaryIntType.value;
@@ -25,7 +24,7 @@ function setTitle() {
     // Clear out input fields
     intInput.value = "";
     result.value = "";
-    calculation.value = "";
+    calculation.innerHTML = "";
 }
 
 function swapTypes() {
@@ -36,27 +35,34 @@ function swapTypes() {
 }
 
 function convertInput() {
-    // alert(intInput.value);
+    // Binary to Decimal
     if (primaryIntType.value == "Binary" && secondaryIntType.value == "Decimal") {
         result.value = binToDec(intInput.value);
+    }
+    // Octal to Decimal
+    else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Decimal") {
+        result.value = octToDec(intInput.value);
+    }
+    else {
+        result.value = intInput.value;
     }
 
 
 
-    // result.value = intInput.value;
 }
 
-function binToDec(num) {
-
+// ... to Decimal
+function binToDec(num) 
+{
     let binNum = num;
     let binNumLength = binNum.toString().length;
     let decNum = 0;
     let formula = "";
 
-    for (var i=0; i < binNumLength; i++)
+    for (let i=0; i < binNumLength; i++)
     {
         // Convert
-        var currDigit = binNum % 10;
+        let currDigit = binNum % 10;
         decNum += currDigit * Math.pow(2, i);
         binNum = Math.floor(binNum/10);
         
@@ -68,7 +74,37 @@ function binToDec(num) {
             formula = " + (" + currDigit.toString() + " * 2^" + i + ")" + formula; 
         }
     }
-    calculation.value = formula;    // Output calculation formula
+    calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula
 
     return decNum;
 }
+function octToDec(num) 
+{
+    let octNum = num;
+    let octNumLength = octNum.toString().length;
+    let decNum = 0;
+    let formula = "";
+
+    for (let i=0; i < octNumLength; i++)
+    {
+        // Convert
+        let currDigit = octNum % 10;
+        decNum += currDigit * Math.pow(8, i);
+        octNum = Math.floor(octNum/10);
+        
+        // Creating calculation formula string
+        if (i === parseInt(octNumLength) - 1) {
+            formula = "(" + currDigit.toString() + " * 8^" + i + ")" + formula; 
+        }
+        else {
+            formula = " + (" + currDigit.toString() + " * 8^" + i + ")" + formula; 
+        }
+    }
+    calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula
+
+    return decNum;
+}
+
+
+
+// Decimal to ...
