@@ -18,8 +18,8 @@ function setTitle() {
     // Set all text elements
     primaryTitle.innerHTML = primaryIntType.value;
     secondaryTitle.innerHTML = secondaryIntType.value;
-    primaryLabelText.innerHTML = primaryIntType.value.toLowerCase();
-    secondaryLabelText.innerHTML = secondaryIntType.value.toLowerCase();
+    primaryLabelText.innerHTML = primaryIntType.value;
+    secondaryLabelText.innerHTML = secondaryIntType.value;
 
     // Clear out input fields
     intInput.value = "";
@@ -32,6 +32,12 @@ function swapTypes() {
     primaryIntType.value = secondaryIntType.value;
     secondaryIntType.value = temp;
     setTitle();
+}
+
+function clearInput() {
+    intInput.value = "";
+    result.value = "";
+    calculation.innerHTML = "";
 }
 
 function convertInput() {

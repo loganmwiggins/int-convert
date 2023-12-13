@@ -40,14 +40,45 @@
         <hr>
 
         <section class="main">
-            <label for="">Enter <span id="primary-label-text">x</span> value:</label>
-            <input type="text" placeholder="Integer value" id="int-input" onchange="convertInput()">
-            <br><br>
-            <label for="">Result (in <span id="secondary-label-text">x</span>):</label>
-            <input type="text" readonly id="result">
-            <br><br>
-            <label for="">Calculation:</label>
-            <div class="input-box" id="calculation"></div>
+            <div class="conversion-ctnr">
+                <div class="input-ctnr">
+                    <p>Enter value:</p>
+                    <div class="input-w-label">
+                        <input 
+                            type="text" 
+                            placeholder="Integer" 
+                            id="int-input" 
+                            onchange="convertInput()"
+                        >
+                        <p id="primary-label-text">...</p>
+                    </div>
+                </div>
+                <div class="input-ctnr">
+                    <p>Result:</p>
+                    <div class="input-w-label">
+                        <input 
+                            type="text" 
+                            readonly 
+                            id="result"
+                        >
+                        <p id="secondary-label-text">...</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="action-btns">
+                <button class="btn">Convert (enter)</button>
+                <button class="btn" onclick="swapTypes()">Swap</button>
+                <button class="btn" onclick="clearInput()">Clear</button>
+            </div>
+            
+            <div class="calculation-ctnr input-box">
+                <p>Calculation</p>
+                <!-- <hr> -->
+                <div id="calculation">...</div>
+
+            </div>
         </section>
 
         <section class="footer">
