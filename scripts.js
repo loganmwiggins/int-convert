@@ -70,6 +70,14 @@ function convertInput() {
     else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Binary") {
         result.value = decToBin(intInput.value);
     }
+    // Decimal to Octal
+    else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Octal") {
+        result.value = decToOct(intInput.value);
+    }
+    // Decimal to Hexadecimal
+    else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Hexadecimal") {
+        result.value = decToHex(intInput.value);
+    }
     else { result.value = intInput.value; }
 }
 
@@ -190,22 +198,77 @@ function hexToDec(num)
 function decToBin(num) {
     let decNum = num;
     let formula = "";
-    let bits = "";
+    let result = "";
 
     while (decNum != 0)
     {
-        if (decNum %2 == 0) {
-            formula += (decNum + "/2 = " + decNum/2 + " r" + decNum%2 + "<br>");
-            bits = decNum %2 + bits;
-            decNum /= 2;
-        }
-        else {
-            formula += (decNum + "/2 = " + Math.floor(decNum/2) + " r" + decNum%2 + "<br>");
-            bits = decNum %2 + bits;
-            decNum = Math.floor(decNum/2);
-        }
+        formula += (decNum + "/2 = " + Math.floor(decNum/2) + " r" + decNum%2 + "<br>");
         calculation.innerHTML = formula;
+        result = decNum %2 + result;
+        decNum = Math.floor(decNum/2);
     }
 
-    return bits;
+    return result;
+}
+
+function decToOct(num) {
+    let decNum = num;
+    let formula = "";
+    let result = "";
+
+    while (decNum != 0)
+    {
+        formula += (decNum + "/8 = " + Math.floor(decNum/8) + " r" + decNum%8 + "<br>");
+        calculation.innerHTML = formula;
+        result = decNum %8 + result;
+        decNum = Math.floor(decNum/8);
+    }
+
+    return result;
+}
+
+function decToHex(num) {
+    let decNum = num;
+    let formula = "";
+    let result = "";
+
+    while (decNum != 0)
+    {
+        let hexDigit = decNum %16;
+
+        switch(hexDigit)   // Change alpha characters to nums
+        {
+            case(10):
+                hexDigit = "A";
+                break;
+            case(11):
+                hexDigit = "B";
+                break;
+            case(12):
+                hexDigit = "C";
+                break;
+            case(13):
+                hexDigit = "D";
+                break;
+            case(14):
+                hexDigit = "E";
+                break;
+            case(15):
+                hexDigit = "F";
+                break;
+        }
+
+        if (hexDigit == 'A' || hexDigit == 'B' || hexDigit == 'C' || hexDigit == 'D' || hexDigit == 'E' || hexDigit == 'F') {
+            formula += (decNum + "/16 = " + Math.floor(decNum/16) + " r" + decNum%16 + "(" + hexDigit + ")<br>");
+
+        }
+        else {
+            formula += (decNum + "/16 = " + Math.floor(decNum/16) + " r" + decNum%16 + "<br>");
+        }
+        calculation.innerHTML = formula;
+        result = hexDigit + result;
+        decNum = Math.floor(decNum/16);
+    }
+
+    return result;
 }
