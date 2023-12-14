@@ -87,6 +87,10 @@ function convertInput() {
     else if (primaryIntType.value == "Binary" && secondaryIntType.value == "Hexadecimal") {
         result.value = binToHex(intInput.value);
     }
+    // Octal to Binary
+    else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Binary") {
+        result.value = octToBin(intInput.value);
+    } 
     else { result.value = intInput.value; }
 }
 
@@ -118,7 +122,6 @@ function binToDec(num)
 
     return decNum;
 }
-
 function octToDec(num) 
 {
     let octNum = num;
@@ -146,7 +149,6 @@ function octToDec(num)
 
     return decNum;
 }
-
 function hexToDec(num) 
 {
     let hexNum = num.toString();
@@ -220,7 +222,6 @@ function decToBin(num)
 
     return result;
 }
-
 function decToOct(num) 
 {
     let decNum = num;
@@ -237,7 +238,6 @@ function decToOct(num)
 
     return result;
 }
-
 function decToHex(num) 
 {
     let decNum = num;
@@ -359,8 +359,45 @@ function binToHex(num)
 
 function octToBin(num)
 {
+    let octNum = num;
+    let octNumLength = octNum.toString().length;
+    let formula = "";
+    let chunks = "";
 
+    // Convert
+    let result = octToDec(octNum);
+    result = decToBin(result);
+
+    // Output calculation
+    formula += octNum + "<br>= ";
+    for (let i=0; i < octNumLength; i++)
+    {
+        let currDigit = octNum[i];
+        formula += currDigit + " ";
+    }
+    
+    let resLength = result.toString().length;
+    let tempResult = result;
+    for (let i=0; i < result.toString().length; i+=3)
+    {
+        if (resLength >= 3) {
+            currBlock = tempResult.toString().slice(resLength-3, resLength);
+            tempResult = tempResult.toString().slice(0, resLength-3);
+            resLength -= 3;
+        }
+        else {
+            currBlock = tempResult.toString().slice(0, resLength);
+        }
+
+        chunks = currBlock + " " + chunks;
+    }
+    formula += "<br>= " + chunks;
+    formula += "<br>= " + result;
+    calculation.innerHTML = formula;    // Output calculation formula to DOM
+
+    return result;
 }
+
 function octToHex(num)
 {
 
