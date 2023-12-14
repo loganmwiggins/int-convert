@@ -47,7 +47,7 @@ html {
     min-height: 100vh;
     min-width: 100vw;
     z-index: -1;
-    opacity: .5;
+    opacity: .75;
 }
 input,
 .input-box {

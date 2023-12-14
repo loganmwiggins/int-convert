@@ -36,8 +36,14 @@ function swapTypes() {
 }
 
 function copyCalculation() {
-    navigator.clipboard.writeText(calculation.innerHTML.toString());
-    alert("Copied " + calculation + " to clipboard");
+    let calcString = calculation.innerHTML;
+    if (calcString != "") {
+        navigator.clipboard.writeText(calcString);
+        alert("Copied calculation to clipboard");
+    } 
+    else {
+        alert("You need to make a conversion before copying the calculation");
+    }
 }
 
 function clearInput() {
@@ -59,6 +65,10 @@ function convertInput() {
     // Hexadecimal to Decimal
     else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Decimal") {
         result.value = hexToDec(intInput.value);
+    }
+    // Decimal to Binary
+    else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Binary") {
+        result.value = decToBin(intInput.value);
     }
     else { result.value = intInput.value; }
 }
@@ -177,17 +187,25 @@ function hexToDec(num)
 
 
 // Decimal to ...
+function decToBin(num) {
+    let decNum = num;
+    let formula = "";
+    let bits = "";
 
-
-
-
-function copyCalculation() {
-    let calcString = calculation.innerHTML;
-    if (calcString != "") {
-        navigator.clipboard.writeText(calcString);
-        alert("Copied calculation to clipboard");
-    } 
-    else {
-        alert("You need to make a conversion before copying the calculation.");
+    while (decNum != 0)
+    {
+        if (decNum %2 == 0) {
+            formula += (decNum + "/2 = " + decNum/2 + " r" + decNum%2 + "<br>");
+            bits = decNum %2 + bits;
+            decNum /= 2;
+        }
+        else {
+            formula += (decNum + "/2 = " + Math.floor(decNum/2) + " r" + decNum%2 + "<br>");
+            bits = decNum %2 + bits;
+            decNum = Math.floor(decNum/2);
+        }
+        calculation.innerHTML = formula;
     }
+
+    return bits;
 }
