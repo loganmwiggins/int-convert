@@ -57,7 +57,7 @@ function setTitle()
     window.sessionStorage.setItem("primaryType", primaryIntType.value);
     window.sessionStorage.setItem("secondaryType", secondaryIntType.value);
     
-    hideDropdownOpts();
+    hideDropdownOpts(); // Hide equivalent dropdown type options
     setInputPattern();  // Set new pattern for input validation 
     clearInput();       // Clear out input fields
 }
@@ -73,12 +73,10 @@ function copyCalculation() {
     let calcString = calculation.innerHTML;
     if (calcString != "") {
         navigator.clipboard.writeText(calcString);
-        // alert("Copied calculation to clipboard");
         copyMsg.innerHTML = "Copied calculation to clipboard";
         copyMsg.style.color = "green";
     } 
     else {
-        // alert("You need to make a conversion before copying the calculation");
         copyMsg.innerHTML = "You need to make a conversion before copying the calculation";
         copyMsg.style.color = "#c20202";
     }
@@ -389,7 +387,6 @@ function hexToDec(num)
     return decNum;
 }
 
-
 // Decimal to ...
 function decToBin(num) 
 {
@@ -505,7 +502,6 @@ function binToOct(num)
 
     return result;
 }   
-
 function binToHex(num)
 {
     let binNum = num;
@@ -541,7 +537,6 @@ function binToHex(num)
 
     return result;
 }
-
 function octToBin(num)
 {
     let octNum = num;
@@ -582,7 +577,6 @@ function octToBin(num)
 
     return result;
 }
-
 function octToHex(num)
 {
 

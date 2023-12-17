@@ -113,10 +113,7 @@ hr {
     flex-direction: column;
     width: 65%;
     padding: 1rem 0;
-    p { 
-        font-size: 1.5rem; 
-        /* opacity: .75; */
-    }
+    p { font-size: 1.5rem; }
 }
 .input-w-label {
     display: flex;
@@ -188,9 +185,6 @@ hr {
 .calculation-ctnr::-webkit-scrollbar-thumb:hover {
     background: rgb(190, 190, 190);
 }
-/* #copyMsg {
-    color: #c20202;
-} */
 
 
 /* Footer */
@@ -227,18 +221,12 @@ hr {
 /* RESPONSIVE DESIGN: LAPTOPS */
 /* ---------------------------------------------------------------------- */
 @media (max-width: 1600px) {
-
     body {
         width: 60vw;
         height: 60vh;
     }
-    .header {
-        flex-direction: column;
-    }
-    .title {
-        margin-bottom: 1rem;
-    }
-
+    .header { flex-direction: column; }
+    .title { margin-bottom: 1rem; }
 }
 
 
@@ -249,16 +237,11 @@ hr {
         width: 80vw;
         height: 80vh;
     }
-    .title {
-        display: none;
-    }
-    .selection {
-        flex-direction: column;
-    }
+    .title { display: none; }
+    .selection { flex-direction: column; }
     .header img,
     .dropdown-ctnr {
         margin-bottom: 1rem;
         margin-left: 0;
     }
-
 }
