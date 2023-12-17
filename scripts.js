@@ -38,7 +38,7 @@ intForm.addEventListener("submit", (e) => {
 
 function setTitle() 
 {
-    // Set all text elements
+    // Set text of title elements
     if (primaryIntType.value == "" || secondaryIntType.value == "") {
         primaryTitle.innerHTML = "Select integer types"
         secondaryTitle.style.display = "none";
@@ -48,17 +48,18 @@ function setTitle()
         secondaryTitle.style.display = "inline";
         secondaryTitle.innerHTML = secondaryIntType.value;
     }
-    
+
+    // Set text of label elements
     primaryLabelText.innerHTML = primaryIntType.value;
     secondaryLabelText.innerHTML = secondaryIntType.value;
 
-    // Save types in session storage AND set new pattern for input
+    // Save types in session storage AND 
     window.sessionStorage.setItem("primaryType", primaryIntType.value);
     window.sessionStorage.setItem("secondaryType", secondaryIntType.value);
-    setInputPattern();
-
-    // Clear out input fields
-    clearInput();
+    
+    hideDropdownOpts();
+    setInputPattern();  // Set new pattern for input validation 
+    clearInput();       // Clear out input fields
 }
 
 function swapTypes() {
@@ -89,17 +90,136 @@ function setInputPattern()
         intInput.setAttribute("pattern", "[0-1]+");
         intInput.setAttribute("title", "Binary input must only contain 0s and 1s");
     }
-    if (primaryIntType.value == "Octal") {
+    else if (primaryIntType.value == "Octal") {
         intInput.setAttribute("pattern", "[0-7]+");
         intInput.setAttribute("title", "Octal input must only contain numbers 0-7");
     }
-    if (primaryIntType.value == "Decimal") {
+    else if (primaryIntType.value == "Decimal") {
         intInput.setAttribute("pattern", "[0-9]+");
         intInput.setAttribute("title", "Decimal input must only contain numbers 0-9");
     }
-    if (primaryIntType.value == "Hexadecimal") {
+    else if (primaryIntType.value == "Hexadecimal") {
         intInput.setAttribute("pattern", "[a-fA-F0-9]+");
         intInput.setAttribute("title", "Hexadecimal input must only contain numbers 0-9 and letters A-F");
+    }
+    else {
+        intInput.setAttribute("pattern", "[]+");
+        intInput.setAttribute("title", "Select two integer types to begin");
+    }
+}
+
+function hideDropdownOpts()
+{
+    // Primary dropdown
+    if (primaryIntType.value == "Binary") {
+        for (let i=2; i <= 5; i++)
+        {
+            if (i === 2) { document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "none"; }
+            else { document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "block"; }
+
+            // Remove selected primary int type from list
+            if (document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").value === secondaryIntType.value) {
+                document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "none";
+            }
+        }
+    }
+    else if (primaryIntType.value == "Octal") {
+        for (let i=2; i <= 5; i++)
+        {
+            if (i === 3) { document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "none"; }
+            else { document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "block"; }
+
+            // Remove selected primary int type from list
+            if (document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").value === secondaryIntType.value) {
+                document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "none";
+            }
+        }
+    }
+    else if (primaryIntType.value == "Decimal") {
+        for (let i=2; i <= 5; i++)
+        {
+            if (i === 4) { document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "none"; }
+            else { document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "block"; }
+
+            // Remove selected primary int type from list
+            if (document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").value === secondaryIntType.value) {
+                document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "none";
+            }
+        }
+    }
+    else if (primaryIntType.value == "Hexadecimal") {
+        for (let i=2; i <= 5; i++)
+        {
+            if (i === 5) { document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "none"; }
+            else { document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "block"; }
+
+            // Remove selected primary int type from list
+            if (document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").value === secondaryIntType.value) {
+                document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "none";
+            }
+        }
+    }
+    else {  // First-time use, show all
+        for (let i=2; i <= 5; i++)
+        {
+            document.querySelector("#primary-int-type option:nth-child(" + i.toString() + ")").style.display = "block";
+        }
+    }
+
+    // Secondary dropdown
+    if (secondaryIntType.value == "Binary") {
+        for (let i=2; i <= 5; i++)
+        {
+            if (i === 2) { document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "none"; }
+            else { document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "block"; }
+
+            // Remove selected primary int type from list
+            if (document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").value === primaryIntType.value) {
+                document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "none";
+            }
+        }
+    }
+    else if (secondaryIntType.value == "Octal") {
+        for (let i=2; i <= 5; i++)
+        {
+            if (i === 3) { document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "none"; }
+            else { document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "block"; }
+
+            // Remove selected primary int type from list
+            if (document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").value === primaryIntType.value) {
+                document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "none";
+            }
+        }
+    }
+    else if (secondaryIntType.value == "Decimal") {
+        for (let i=2; i <= 5; i++)
+        {
+            if (i === 4) { document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "none"; }
+            else { document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "block"; }
+
+            // Remove selected primary int type from list
+            if (document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").value === primaryIntType.value) {
+                document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "none";
+            }
+        }
+    }
+    else if (secondaryIntType.value == "Hexadecimal") {
+        for (let i=2; i <= 5; i++)
+        {
+            if (i === 5) { document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "none"; }
+            else { document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "block"; }
+
+            // Remove selected primary int type from list
+            if (document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").value === primaryIntType.value) {
+                document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "none";
+            }
+        }
+    }
+    else {  // First-time use, show all
+        for (let i=2; i <= 5; i++)
+        {
+            document.querySelector("#secondary-int-type option:nth-child(" + i.toString() + ")").style.display = "block";
+        }
     }
 }
 
