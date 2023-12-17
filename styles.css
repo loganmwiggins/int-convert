@@ -126,10 +126,12 @@ hr {
     }
     p {
         max-width: fit-content;
-        font-size: 1.75rem;
+        font-size: 1.5rem;
         background-color: rgb(184, 201, 255);
+        /* color: black; */
+        color: #33457e;
         padding: 0 1rem;
-        border-radius: 2rem;
+        border-radius: .5rem;
     }
 }
 
@@ -138,9 +140,15 @@ hr {
     margin: 2rem 0;
 }
 .btn {
+    display: flex;
+    align-items: center;
+    min-width: fit-content;
     font-family: "Poppins-Regular";
     font-size: 1.5rem;
+    font-weight: 600;
     background-color: lightgrey;
+    background-color: rgb(230, 230, 230);
+    color: #5a5a5a;
     padding: 1rem 2rem;
     margin-right: 1rem;
     border: none;
@@ -149,8 +157,13 @@ hr {
     transition: background-color .15s ease;
 }
 .btn:hover {
-    background-color: rgb(190, 190, 190);
+    background-color: rgb(210, 210, 210);
     transition: background-color .15s ease;
+}
+.btn img {
+    filter: invert(33%) sepia(0%) saturate(0%) hue-rotate(200deg) brightness(102%) contrast(90%);
+    max-width: 2rem;
+    margin-right: 1rem;
 }
 
 .calculation-ctnr {
