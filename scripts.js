@@ -10,6 +10,7 @@ let intForm = document.getElementById("int-form");
 let intInput = document.getElementById("int-input");
 let result = document.getElementById("result");
 let calculation = document.getElementById("calculation");
+let copyMsg = document.getElementById("copyMsg");
 
 
 // On init {}
@@ -63,10 +64,14 @@ function copyCalculation() {
     let calcString = calculation.innerHTML;
     if (calcString != "") {
         navigator.clipboard.writeText(calcString);
-        alert("Copied calculation to clipboard");
+        // alert("Copied calculation to clipboard");
+        copyMsg.innerHTML = "Copied calculation to clipboard";
+        copyMsg.style.color = "green";
     } 
     else {
-        alert("You need to make a conversion before copying the calculation");
+        // alert("You need to make a conversion before copying the calculation");
+        copyMsg.innerHTML = "You need to make a conversion before copying the calculation";
+        copyMsg.style.color = "#c20202";
     }
 }
 
@@ -95,6 +100,7 @@ function clearInput() {
     result.value = "";
     calculation.innerHTML = "";
     calculation.style.marginTop = "0";
+    copyMsg.innerHTML = "";
 }
 
 function convertInput() {
