@@ -10,16 +10,32 @@ let intInput = document.getElementById("int-input");
 let result = document.getElementById("result");
 let calculation = document.getElementById("calculation");
 
-// On init
-setTitle();
+
+// On init {}
+    // Remember integer types on refresh
+    primaryIntType.value = sessionStorage.getItem("primaryType");
+    secondaryIntType.value = sessionStorage.getItem("secondaryType");
+    // Set text of elements on screen
+    setTitle();
+//
+
 
 // Functions
-function setTitle() {
+// testForm.addEventListener("submit", (e) => {
+//     // window.sessionStorage.setItem("currentInput", intInput.value);
+// });
+
+function setTitle() 
+{
     // Set all text elements
     primaryTitle.innerHTML = primaryIntType.value;
     secondaryTitle.innerHTML = secondaryIntType.value;
     primaryLabelText.innerHTML = primaryIntType.value;
     secondaryLabelText.innerHTML = secondaryIntType.value;
+
+    // Save types in session storage
+    window.sessionStorage.setItem("primaryType", primaryIntType.value);
+    window.sessionStorage.setItem("secondaryType", secondaryIntType.value);
 
     // Clear out input fields
     intInput.value = "";
