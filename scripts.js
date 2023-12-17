@@ -39,8 +39,16 @@ intForm.addEventListener("submit", (e) => {
 function setTitle() 
 {
     // Set all text elements
-    primaryTitle.innerHTML = primaryIntType.value;
-    secondaryTitle.innerHTML = secondaryIntType.value;
+    if (primaryIntType.value == "" || secondaryIntType.value == "") {
+        primaryTitle.innerHTML = "Select integer types"
+        secondaryTitle.style.display = "none";
+    }
+    else {
+        primaryTitle.innerHTML = primaryIntType.value;
+        secondaryTitle.style.display = "inline";
+        secondaryTitle.innerHTML = secondaryIntType.value;
+    }
+    
     primaryLabelText.innerHTML = primaryIntType.value;
     secondaryLabelText.innerHTML = secondaryIntType.value;
 

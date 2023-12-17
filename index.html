@@ -19,10 +19,11 @@
             <div class="title">
                 <h1 id="primary-title">Binary</h1>
                 &nbsp;&nbsp;
-                <h1>→ <span id="secondary-title">Decimal</span></h1>
+                <h1 id="title-arrow">→ <span id="secondary-title">Decimal</span></h1>
             </div>
             <div class="selection">
                 <select name="primaryIntType" id="primary-int-type" class="dropdown-ctnr" onchange="setTitle()">
+                    <option hidden disabled selected value>Choose...</option>
                     <option class=".dropdown-item" value="Binary">Binary (base 2)</option>
                     <option value="Octal">Octal (base 8)</option>
                     <option value="Decimal">Decimal (base 10)</option>
@@ -30,6 +31,7 @@
                 </select>
                 <img src="assets/icons/swap.svg" draggable="false" id="swap-btn" onclick="swapTypes()">
                 <select name="secondaryIntType" id="secondary-int-type" class="dropdown-ctnr" onchange="setTitle()">
+                    <option hidden disabled selected value>Choose...</option>
                     <option value="Binary">Binary (base 2)</option>
                     <option value="Octal">Octal (base 8)</option>
                     <option value="Decimal">Decimal (base 10)</option>
@@ -49,8 +51,8 @@
                             placeholder="Integer" 
                             autocomplete="off"
                             id="int-input"
-                            pattern="[0-1]+"
-                            title="Binary input must only contain 0s and 1s"
+                            pattern="[]+"
+                            title="Select two integer types to begin"
                             required
                         >
                         <p id="primary-label-text">...</p>
