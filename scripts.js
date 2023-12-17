@@ -6,24 +6,34 @@ let secondaryTitle = document.getElementById("secondary-title");
 let swapBtn = document.getElementById("swap-btn");
 let primaryLabelText = document.getElementById("primary-label-text");
 let secondaryLabelText = document.getElementById("secondary-label-text");
+let intForm = document.getElementById("int-form");
 let intInput = document.getElementById("int-input");
 let result = document.getElementById("result");
 let calculation = document.getElementById("calculation");
 
 
 // On init {}
-    // Remember integer types on refresh
+    // Remember integer types on refresh/submit
     primaryIntType.value = sessionStorage.getItem("primaryType");
     secondaryIntType.value = sessionStorage.getItem("secondaryType");
+    
     // Set text of elements on screen
     setTitle();
+
+    // Remember input and results on refresh/submit
+    intInput.value = sessionStorage.getItem("currentInput");
+    result.value = sessionStorage.getItem("currentResult");
+    calculation.innerHTML = sessionStorage.getItem("currentCalculation");
 //
 
 
 // Functions
-// testForm.addEventListener("submit", (e) => {
-//     // window.sessionStorage.setItem("currentInput", intInput.value);
-// });
+intForm.addEventListener("submit", (e) => {
+    convertInput();
+    window.sessionStorage.setItem("currentInput", intInput.value);
+    window.sessionStorage.setItem("currentResult", result.value);
+    window.sessionStorage.setItem("currentCalculation", calculation.innerHTML);    
+});
 
 function setTitle() 
 {
@@ -33,15 +43,13 @@ function setTitle()
     primaryLabelText.innerHTML = primaryIntType.value;
     secondaryLabelText.innerHTML = secondaryIntType.value;
 
-    // Save types in session storage
+    // Save types in session storage AND set new pattern for input
     window.sessionStorage.setItem("primaryType", primaryIntType.value);
     window.sessionStorage.setItem("secondaryType", secondaryIntType.value);
+    setInputPattern();
 
     // Clear out input fields
-    intInput.value = "";
-    result.value = "";
-    calculation.innerHTML = "";
-    calculation.style.marginTop = "0";
+    clearInput();
 }
 
 function swapTypes() {
@@ -59,6 +67,26 @@ function copyCalculation() {
     } 
     else {
         alert("You need to make a conversion before copying the calculation");
+    }
+}
+
+function setInputPattern()
+{
+    if (primaryIntType.value == "Binary") {
+        intInput.setAttribute("pattern", "[0-1]+");
+        intInput.setAttribute("title", "Binary input must only contain 0s and 1s");
+    }
+    if (primaryIntType.value == "Octal") {
+        intInput.setAttribute("pattern", "[0-7]+");
+        intInput.setAttribute("title", "Octal input must only contain numbers 0-7");
+    }
+    if (primaryIntType.value == "Decimal") {
+        intInput.setAttribute("pattern", "[0-9]+");
+        intInput.setAttribute("title", "Decimal input must only contain numbers 0-9");
+    }
+    if (primaryIntType.value == "Hexadecimal") {
+        intInput.setAttribute("pattern", "[a-fA-F0-9]+");
+        intInput.setAttribute("title", "Hexadecimal input must only contain numbers 0-9 and letters A-F");
     }
 }
 
@@ -109,6 +137,13 @@ function convertInput() {
     } 
     else { result.value = intInput.value; }
 }
+
+
+
+
+
+
+
 
 // ... to Decimal
 function binToDec(num) 

@@ -43,12 +43,15 @@
             <div class="conversion-ctnr">
                 <div class="input-ctnr">
                     <p>Enter value</p>
-                    <form class="input-w-label">
+                    <form class="input-w-label" id="int-form">
                         <input 
                             type="text" 
                             placeholder="Integer" 
+                            autocomplete="off"
                             id="int-input"
-                            onchange="convertInput()"
+                            pattern="[0-1]+"
+                            title="Binary input must only contain 0s and 1s"
+                            required
                         >
                         <p id="primary-label-text">...</p>
                     </form>
