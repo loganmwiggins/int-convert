@@ -75,7 +75,7 @@
             <div class="action-btns">
                 <button class="btn">
                     <img src="assets/icons/enter-3.svg" style="scale: 125%" draggable="false">
-                    Convert (enter)
+                    Convert
                 </button>
                 <button class="btn" onclick="swapTypes()">
                     <img src="assets/icons/swap.svg" draggable="false">
@@ -95,10 +95,18 @@
         </section>
 
         <section class="footer">
-            <img src="assets/icons/apps.svg" draggable="false">
-            <img src="assets/icons/question-mark.svg" draggable="false">
-            <img src="assets/icons/settings.svg" draggable="false">
-            <img src="assets/icons/dark-mode.svg" draggable="false" style="scale: 115%">
+            <button class="footer-btn">
+                <img src="assets/icons/apps.svg" draggable="false" id="appsIcon">
+            </button>
+            <button class="footer-btn">
+                <img src="assets/icons/question-mark.svg" draggable="false" id="infoIcon">
+            </button>
+            <button class="footer-btn">
+                <img src="assets/icons/settings.svg" draggable="false" id="settingsIcon">
+            </button>
+            <button class="footer-btn" id="themeBtn" onclick="toggleTheme()">
+                <img src="assets/icons/dark-mode.svg" draggable="false" style="scale: 115%" id="themeIcon">
+            </button>
         </section>
     </body>
 

@@ -589,3 +589,67 @@ function hexToOct(num)
 {
 
 }
+
+
+
+
+
+
+
+
+
+
+
+// DARK MODE
+    let darkMode = localStorage.getItem("darkMode");    // Declare local storage var for dark mode
+
+    // Declare footer buttons and page icons
+    let appsIcon = document.getElementById("appsIcon");
+    let infoIcon = document.getElementById("infoIcon");
+    let settingsIcon = document.getElementById("settingsIcon");
+    let themeBtn = document.getElementById("themeBtn");
+    let themeIcon = document.getElementById("themeIcon");
+
+    // Functions for enabling and disabling darkMode
+    const enableDarkMode = () => {
+        document.body.classList.add("dark-theme");      // Add dark-theme class to HTML body
+        localStorage.setItem("darkMode", "enabled");    // Update darkMode in the local storage
+        darkMode = localStorage.getItem("darkMode");    // Update darkMode variable
+    }
+    const disableDarkMode = () => {
+        document.body.classList.remove("dark-theme");   // Remove dark-theme class from HTML body
+        localStorage.setItem("darkMode", "disabled");   // Update darkMode in the local storage
+        darkMode = localStorage.getItem("darkMode");    // Update darkMode variable
+    }
+
+    // Check darkMode state and set on load (keeps on refresh)
+    if (darkMode === "enabled") {
+        enableDarkMode();
+        swapBtn.classList.add("filter-white");
+        appsIcon.classList.add("filter-white");
+        infoIcon.classList.add("filter-white");
+        settingsIcon.classList.add("filter-white");
+        themeIcon.classList.add("filter-white");
+    }
+
+    // Change theme when button is clicked
+    function toggleTheme() {
+        darkMode = localStorage.getItem("darkMode");    
+        
+        if (darkMode !== "enabled") {
+            enableDarkMode();
+            swapBtn.classList.add("filter-white");
+            appsIcon.classList.add("filter-white");
+            infoIcon.classList.add("filter-white");
+            settingsIcon.classList.add("filter-white");
+            themeIcon.classList.add("filter-white");
+        }
+        else {
+            disableDarkMode();
+            swapBtn.classList.remove("filter-white");
+            appsIcon.classList.remove("filter-white");
+            infoIcon.classList.remove("filter-white");
+            settingsIcon.classList.remove("filter-white");
+            themeIcon.classList.remove("filter-white");
+        }
+    }

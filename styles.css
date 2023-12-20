@@ -15,12 +15,15 @@
 /* COLOR VARS */
 :root {
     --primary-color: rgb(255, 255, 255);
-    --secondary-color: rgb(0, 0, 0,);
+    --secondary-color: rgb(0, 0, 0);
+    --window-color: rgb(255, 255, 255);
 }
 .dark-theme { 
-    --primary-color: rgb(0, 0, 0,);
+    --primary-color: rgb(0, 0, 0);
     --secondary-color: rgb(255, 255, 255);
+    --window-color: rgb(41, 42, 45);
 }
+.filter-white { filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(350deg) brightness(107%) contrast(102%); }
 
 
 /* MAIN COMPONENTS */
@@ -32,7 +35,6 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background: var(--secondary-color); */
     background-color: black;
     font-family: "Poppins-Regular";
     overflow-x: hidden;
@@ -47,10 +49,12 @@ html {
     min-height: 100vh;
     min-width: 100vw;
     z-index: -1;
-    /* opacity: .75; */
+    opacity: .75;
 }
 input,
 .input-box {
+    background: var(--primary-color);
+    color: var(--secondary-color);
     width: 300px;
     font-family: "Poppins-Regular";
     font-size: 2rem;
@@ -63,9 +67,9 @@ input,
 
 /* DISPLAY WINDOW */
 body {
-    /* background: var(--primary-color); */
+    background: var(--window-color);
+    color: var(--secondary-color);
     position: relative;
-    background-color: white;
     width: 50%;
     height: 600px;
     max-width: 1400px; /* need a specific value to work */
@@ -143,7 +147,6 @@ hr {
     font-family: "Poppins-Regular";
     font-size: 1.5rem;
     font-weight: 600;
-    background-color: lightgrey;
     background-color: rgb(230, 230, 230);
     color: #5a5a5a;
     padding: 1rem 2rem;
@@ -197,17 +200,22 @@ hr {
     bottom: 0;
     right: 0;
     padding: 2rem 4rem;
-    img { 
-        max-width: 2.5rem; 
-        margin-left: 1.5rem; 
-        opacity: .25;
-        cursor: pointer;
-        transition: opacity .25s ease;
-    }
-    img:hover {
-        opacity: .5;
-        transition: opacity .25s ease;
-    }
+    
+    
+}
+.footer-btn {
+    background: none;
+    border: none;
+    margin-left: 1.5rem; 
+    cursor: pointer;
+    opacity: .25;
+    transition: opacity .25s ease;
+
+    img { max-width: 2.5rem; }
+}
+.footer-btn:hover {
+    opacity: .5;
+    transition: opacity .25s ease;
 }
 
 
