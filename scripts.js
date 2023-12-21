@@ -646,7 +646,6 @@ function hexToOct(num)
     // Declare footer buttons and page icons
     let appsIcon = document.getElementById("appsIcon");
     let infoIcon = document.getElementById("infoIcon");
-    let settingsIcon = document.getElementById("settingsIcon");
     let themeBtn = document.getElementById("themeBtn");
     let themeIcon = document.getElementById("themeIcon");
 
@@ -668,7 +667,6 @@ function hexToOct(num)
         swapBtn.classList.add("filter-white");
         appsIcon.classList.add("filter-white");
         infoIcon.classList.add("filter-white");
-        settingsIcon.classList.add("filter-white");
         themeIcon.classList.add("filter-white");
     }
 
@@ -681,7 +679,6 @@ function hexToOct(num)
             swapBtn.classList.add("filter-white");
             appsIcon.classList.add("filter-white");
             infoIcon.classList.add("filter-white");
-            settingsIcon.classList.add("filter-white");
             themeIcon.classList.add("filter-white");
         }
         else {
@@ -689,7 +686,6 @@ function hexToOct(num)
             swapBtn.classList.remove("filter-white");
             appsIcon.classList.remove("filter-white");
             infoIcon.classList.remove("filter-white");
-            settingsIcon.classList.remove("filter-white");
             themeIcon.classList.remove("filter-white");
         }
     }

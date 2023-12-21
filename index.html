@@ -12,86 +12,103 @@
     </head>
 
     <video autoplay muted loop class="bg-video">
-        <source src="assets/gradient-background-2.mp4" type="video/mp4">
+        <!-- <source src="assets/gradient-background-2.mp4" type="video/mp4"> -->
     </video>
 
     <body>
         <section class="header">
-            <div class="title">
-                <h1 id="primary-title">Binary</h1>
-                &nbsp;&nbsp;
-                <h1 id="title-arrow">→ <span id="secondary-title">Decimal</span></h1>
-            </div>
-            <div class="selection">
-                <select name="primaryIntType" id="primary-int-type" class="dropdown-ctnr" onchange="setTitle()">
-                    <option hidden disabled selected value>Choose...</option>
-                    <option class=".dropdown-item" value="Binary">Binary (base 2)</option>
-                    <option value="Octal">Octal (base 8)</option>
-                    <option value="Decimal">Decimal (base 10)</option>
-                    <option value="Hexadecimal">Hexadecimal (base 16)</option>
-                </select>
-                <img src="assets/icons/swap.svg" draggable="false" id="swap-btn" onclick="swapTypes()">
-                <select name="secondaryIntType" id="secondary-int-type" class="dropdown-ctnr" onchange="setTitle()">
-                    <option hidden disabled selected value>Choose...</option>
-                    <option value="Binary">Binary (base 2)</option>
-                    <option value="Octal">Octal (base 8)</option>
-                    <option value="Decimal">Decimal (base 10)</option>
-                    <option value="Hexadecimal">Hexadecimal (base 16)</option>
-                </select>
-            </div>
+            <img src="assets/icons/31.svg" draggable="false">
+            <h1>IntConvert</h1>
         </section>
         <hr>
 
         <section class="main">
-            <div class="conversion-ctnr">
-                <div class="input-ctnr">
-                    <p>Enter value</p>
-                    <form class="input-w-label" id="int-form">
-                        <input 
-                            type="text" 
-                            placeholder="Integer" 
-                            autocomplete="off"
-                            id="int-input"
-                            pattern="[]+"
-                            title="Select two integer types to begin"
-                            required
-                        >
-                        <p id="primary-label-text">...</p>
-                    </form>
+            <!-- Conversion container -->
+            <div class="main-ctnr conversion-ctnr">
+                <div class="main-ctnr-hdr">
+                    <h3 id="primary-title">Binary</h3>
+                    &nbsp;&nbsp;
+                    <h3 id="title-arrow">→ <span id="secondary-title">Decimal</span></h3>
                 </div>
-                <div class="input-ctnr">
-                    <p>Result</p>
-                    <div class="input-w-label">
-                        <input 
-                            type="text" 
-                            readonly 
-                            id="result"
-                            placeholder="-"
-                        >
-                        <p id="secondary-label-text">...</p>
+                <div class="main-ctnr-body">
+                    <div class="input-ctnr">
+                        <p>Select types to convert</p>
+                        <div class="selection">
+                            <select name="primaryIntType" id="primary-int-type" class="dropdown-ctnr" onchange="setTitle()">
+                                <option hidden disabled selected value>Choose...</option>
+                                <option class=".dropdown-item" value="Binary">Binary (base 2)</option>
+                                <option value="Octal">Octal (base 8)</option>
+                                <option value="Decimal">Decimal (base 10)</option>
+                                <option value="Hexadecimal">Hexadecimal (base 16)</option>
+                            </select>
+                            <img src="assets/icons/swap.svg" draggable="false" id="swap-btn" onclick="swapTypes()">
+                            <select name="secondaryIntType" id="secondary-int-type" class="dropdown-ctnr" onchange="setTitle()">
+                                <option hidden disabled selected value>Choose...</option>
+                                <option value="Binary">Binary (base 2)</option>
+                                <option value="Octal">Octal (base 8)</option>
+                                <option value="Decimal">Decimal (base 10)</option>
+                                <option value="Hexadecimal">Hexadecimal (base 16)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="input-ctnr">
+                        <p>Enter value</p>
+                        <form class="input-w-label" id="int-form">
+                            <input 
+                                type="text" 
+                                placeholder="Integer" 
+                                autocomplete="off"
+                                id="int-input"
+                                pattern="[]+"
+                                title="Select two integer types to begin"
+                                required
+                            >
+                            <p id="primary-label-text">...</p>
+                        </form>
+                    </div>
+                    <div class="input-ctnr">
+                        <p>Result</p>
+                        <div class="input-w-label">
+                            <input 
+                                type="text" 
+                                readonly 
+                                id="result"
+                                placeholder="-"
+                            >
+                            <p id="secondary-label-text">...</p>
+                        </div>
+                    </div>
+                    <div class="action-btns">
+                        <button class="btn">
+                            <img src="assets/icons/enter-3.svg" style="scale: 125%" draggable="false">
+                            Convert
+                        </button>
+                        <button class="btn" onclick="swapTypes()">
+                            <img src="assets/icons/swap.svg" draggable="false">
+                            Swap
+                        </button>
+                        <button class="btn" onclick="clearInput()">
+                            <img src="assets/icons/erase.svg" style="scale: 125%" draggable="false">
+                            Clear
+                        </button>
                     </div>
                 </div>
             </div>
-            
-            <div class="action-btns">
-                <button class="btn">
-                    <img src="assets/icons/enter-3.svg" style="scale: 125%" draggable="false">
-                    Convert
-                </button>
-                <button class="btn" onclick="swapTypes()">
-                    <img src="assets/icons/swap.svg" draggable="false">
-                    Swap
-                </button>
-                <button class="btn" onclick="clearInput()">
-                    <img src="assets/icons/erase.svg" style="scale: 125%" draggable="false">
-                    Clear
-                </button>
-            </div>
-            
-            <div class="calculation-ctnr input-box" onclick="copyCalculation()">
-                <p>Calculation</p>
-                <p id="copyMsg"></p>
-                <div id="calculation">...</div>
+            <!-- Calculation container -->
+            <div class="main-ctnr calculation-ctnr">
+                <div class="main-ctnr-hdr">
+                    <h3>Calculations</h3>
+                </div>
+                <div class="main-ctnr-body">
+                    <div class="input-ctnr">
+                        <p>Formula</p>
+                        <div class="calculation-box input-box" onclick="copyCalculation()">
+                            <p id="copyMsg"></p>
+                            <div id="calculation">...</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
