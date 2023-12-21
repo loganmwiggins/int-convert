@@ -693,3 +693,9 @@ function hexToOct(num)
             themeIcon.classList.remove("filter-white");
         }
     }
+/////
+
+// OTHER FOOTER BUTTONS
+    function backToWigginsnet() {
+        window.open("https://www.wigginsnet.com", "_blank");
+    }
