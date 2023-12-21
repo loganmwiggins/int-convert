@@ -267,6 +267,10 @@ function convertInput() {
     else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Binary") {
         result.value = octToBin(intInput.value);
     } 
+    // Hexadecimal to Binary
+    else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Binary") {
+        result.value = hexToBin(intInput.value);
+    } 
     else { result.value = intInput.value; }
 }
 
@@ -583,7 +587,43 @@ function octToHex(num)
 }
 function hexToBin(num)
 {
+    let hexNum = num;
+    let hexNumLength = hexNum.toString().length;
+    let formula = "";
+    let chunks = "";
 
+    // Convert
+    let result = hexToDec(hexNum);
+    result = decToBin(result);
+
+    // Output calculation
+    formula += hexNum + "<br>= ";
+    for (let i=0; i < hexNumLength; i++)
+    {
+        let currDigit = hexNum[i];
+        formula += currDigit + " ";
+    }
+    
+    let resLength = result.toString().length;
+    let tempResult = result;
+    for (let i=0; i < result.toString().length; i+=4)
+    {
+        if (resLength >= 4) {
+            currBlock = tempResult.toString().slice(resLength-4, resLength);
+            tempResult = tempResult.toString().slice(0, resLength-4);
+            resLength -= 4;
+        }
+        else {
+            currBlock = tempResult.toString().slice(0, resLength);
+        }
+
+        chunks = currBlock + " " + chunks;
+    }
+    formula += "<br>= " + chunks;
+    formula += "<br>= " + result;
+    calculation.innerHTML = formula;    // Output calculation formula to DOM
+
+    return result;
 }
 function hexToOct(num)
 {
