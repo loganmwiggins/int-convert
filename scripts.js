@@ -3,6 +3,7 @@ let primaryIntType = document.getElementById("primary-int-type");
 let secondaryIntType = document.getElementById("secondary-int-type");
 let primaryTitle = document.getElementById("primary-title");
 let secondaryTitle = document.getElementById("secondary-title");
+let convertBtn = document.getElementById("convertBtn");
 let swapBtn = document.getElementById("swap-btn");
 let primaryLabelText = document.getElementById("primary-label-text");
 let secondaryLabelText = document.getElementById("secondary-label-text");
@@ -10,22 +11,27 @@ let intForm = document.getElementById("int-form");
 let intInput = document.getElementById("int-input");
 let result = document.getElementById("result");
 let calculation = document.getElementById("calculation");
+let calculationData = document.getElementById("calculation-data");
+let emptyMsg = document.getElementById("emptyMsg");
 let copyMsg = document.getElementById("copyMsg");
 
 
-// On init {}
+// onInit() {
     // Remember integer types on refresh/submit
     primaryIntType.value = sessionStorage.getItem("primaryType");
     secondaryIntType.value = sessionStorage.getItem("secondaryType");
     
     // Set text of elements on screen
-    setTitle();
+    setType();
 
     // Remember input and results on refresh/submit
     intInput.value = sessionStorage.getItem("currentInput");
     result.value = sessionStorage.getItem("currentResult");
     calculation.innerHTML = sessionStorage.getItem("currentCalculation");
-//
+
+    // If values are cleared, hide calculation data and show buffer
+    checkEmpty();
+// }
 
 
 // Functions
@@ -36,17 +42,19 @@ intForm.addEventListener("submit", (e) => {
     window.sessionStorage.setItem("currentCalculation", calculation.innerHTML);    
 });
 
-function setTitle() 
+function setType() 
 {
     // Set text of title elements
     if (primaryIntType.value == "" || secondaryIntType.value == "") {
         primaryTitle.innerHTML = "Select integer types"
         secondaryTitle.style.display = "none";
+        document.getElementById("title-arrow").style.display = "none";
     }
     else {
         primaryTitle.innerHTML = primaryIntType.value;
         secondaryTitle.style.display = "inline";
         secondaryTitle.innerHTML = secondaryIntType.value;
+        document.getElementById("title-arrow").style.display = "inline";
     }
 
     // Set text of label elements
@@ -62,12 +70,7 @@ function setTitle()
     clearInput();       // Clear out input fields
 }
 
-function swapTypes() {
-    let temp = primaryIntType.value;
-    primaryIntType.value = secondaryIntType.value;
-    secondaryIntType.value = temp;
-    setTitle();
-}
+
 
 function copyCalculation() {
     let calcString = calculation.innerHTML;
@@ -227,6 +230,18 @@ function clearInput() {
     calculation.innerHTML = "";
     calculation.style.marginTop = "0";
     copyMsg.innerHTML = "";
+
+    checkEmpty();
+}
+function checkEmpty() {
+    if (window.sessionStorage.getItem("currentResult") === null || result.value === "") {
+        calculationData.style.display = "none";
+        emptyMsg.style.display = "block";
+    }
+    else {
+        calculationData.style.display = "block";
+        emptyMsg.style.display = "none";
+    }
 }
 
 function convertInput() {
@@ -635,6 +650,15 @@ function hexToOct(num)
 
 
 
+
+// ACTION BUTTONS
+    function swapTypes() {
+        let temp = primaryIntType.value;
+        primaryIntType.value = secondaryIntType.value;
+        secondaryIntType.value = temp;
+        setType();
+    }
+/////
 
 
 

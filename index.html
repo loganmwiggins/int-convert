@@ -17,8 +17,28 @@
 
     <body>
         <section class="header">
-            <img src="assets/icons/31.svg" draggable="false">
-            <h1>IntConvert</h1>
+            <div class="logo-title">
+                <img src="assets/icons/31.svg" draggable="false">
+                <h1>IntConvert</h1>
+            </div>
+            <div class="site-btn-ctnr">
+                <button class="site-btn" onclick="backToWigginsnet()">
+                    <span class="tooltip">App Library</span>
+                    <img src="assets/icons/apps.svg" draggable="false" id="appsIcon">
+                </button>
+                <button class="site-btn">
+                    <span class="tooltip">More Info</span>
+                    <img src="assets/icons/question-mark.svg" draggable="false" id="infoIcon">
+                </button>
+                <!-- <button class="site-btn">
+                    <span class="tooltip">Settings</span>
+                    <img src="assets/icons/settings.svg" draggable="false" id="settingsIcon">
+                </button> -->
+                <button class="site-btn" id="themeBtn" onclick="toggleTheme()">
+                    <span class="tooltip">Change theme</span>
+                    <img src="assets/icons/dark-mode.svg" draggable="false" style="scale: 115%" id="themeIcon">
+                </button>
+            </div>
         </section>
         <hr>
 
@@ -34,7 +54,7 @@
                     <div class="input-ctnr">
                         <p>Select types to convert</p>
                         <div class="selection">
-                            <select name="primaryIntType" id="primary-int-type" class="dropdown-ctnr" onchange="setTitle()">
+                            <select name="primaryIntType" id="primary-int-type" class="dropdown-ctnr" onchange="setType()">
                                 <option hidden disabled selected value>Choose...</option>
                                 <option class=".dropdown-item" value="Binary">Binary (base 2)</option>
                                 <option value="Octal">Octal (base 8)</option>
@@ -42,7 +62,7 @@
                                 <option value="Hexadecimal">Hexadecimal (base 16)</option>
                             </select>
                             <img src="assets/icons/swap.svg" draggable="false" id="swap-btn" onclick="swapTypes()">
-                            <select name="secondaryIntType" id="secondary-int-type" class="dropdown-ctnr" onchange="setTitle()">
+                            <select name="secondaryIntType" id="secondary-int-type" class="dropdown-ctnr" onchange="setType()">
                                 <option hidden disabled selected value>Choose...</option>
                                 <option value="Binary">Binary (base 2)</option>
                                 <option value="Octal">Octal (base 8)</option>
@@ -57,14 +77,13 @@
                         <form class="input-w-label" id="int-form">
                             <input 
                                 type="text" 
-                                placeholder="Integer" 
                                 autocomplete="off"
                                 id="int-input"
                                 pattern="[]+"
                                 title="Select two integer types to begin"
                                 required
                             >
-                            <p id="primary-label-text">...</p>
+                            <p id="primary-label-text"></p>
                         </form>
                     </div>
                     <div class="input-ctnr">
@@ -74,13 +93,16 @@
                                 type="text" 
                                 readonly 
                                 id="result"
-                                placeholder="-"
                             >
-                            <p id="secondary-label-text">...</p>
+                            <p id="secondary-label-text"></p>
                         </div>
                     </div>
+                    <div class="input-ctnr">
+                        <p>Other Results</p>
+                        <div class="input-box"></div>
+                    </div>
                     <div class="action-btns">
-                        <button class="btn">
+                        <button type="submit" form="int-form" class="btn" id="convertBtn">
                             <img src="assets/icons/enter-3.svg" style="scale: 125%" draggable="false">
                             Convert
                         </button>
@@ -101,34 +123,39 @@
                     <h3>Calculations</h3>
                 </div>
                 <div class="main-ctnr-body">
-                    <div class="input-ctnr">
-                        <p>Formula</p>
-                        <div class="calculation-box input-box" onclick="copyCalculation()">
+                    <div class="empty-msg" id="emptyMsg">
+                        <p class="empty-btn" onclick="intInput.focus()">
+                            Please make a conversion to see calculation data
+                            <div class="lds-grid">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </p>
+                    </div>
+                    <div id="calculation-data">
+                        <div class="input-ctnr">
+                            <p>Formula</p>
+                            <div class="calculation-box">
+                                <div id="calculation"></div>
+                            </div>
                             <p id="copyMsg"></p>
-                            <div id="calculation">...</div>
+                            <button class="btn btn-sm" onclick="copyCalculation()">Copy</button>
+                        </div>
+    
+                        <div class="input-ctnr">
+                            <p>About this Conversion</p>
+                            <div class="input-box" id="aboutText"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="footer">
-            <button class="footer-btn" onclick="backToWigginsnet()">
-                <span class="tooltip">App Library</span>
-                <img src="assets/icons/apps.svg" draggable="false" id="appsIcon">
-            </button>
-            <button class="footer-btn">
-                <span class="tooltip">More Info</span>
-                <img src="assets/icons/question-mark.svg" draggable="false" id="infoIcon">
-            </button>
-            <!-- <button class="footer-btn">
-                <span class="tooltip">Settings</span>
-                <img src="assets/icons/settings.svg" draggable="false" id="settingsIcon">
-            </button> -->
-            <button class="footer-btn" id="themeBtn" onclick="toggleTheme()">
-                <span class="tooltip">Change theme</span>
-                <img src="assets/icons/dark-mode.svg" draggable="false" style="scale: 115%" id="themeIcon">
-            </button>
         </section>
     </body>
 
