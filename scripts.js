@@ -14,6 +14,7 @@ let calculation = document.getElementById("calculation");
 let calculationData = document.getElementById("calculation-data");
 let emptyMsg = document.getElementById("emptyMsg");
 let copyMsg = document.getElementById("copyMsg");
+let aboutText = document.getElementById("aboutText");
 
 
 // onInit() {
@@ -28,6 +29,7 @@ let copyMsg = document.getElementById("copyMsg");
     intInput.value = sessionStorage.getItem("currentInput");
     result.value = sessionStorage.getItem("currentResult");
     calculation.innerHTML = sessionStorage.getItem("currentCalculation");
+    aboutText.innerHTML = sessionStorage.getItem("currentDescription");
 
     // If values are cleared, hide calculation data and show buffer
     checkEmpty();
@@ -39,7 +41,8 @@ intForm.addEventListener("submit", (e) => {
     convertInput();
     window.sessionStorage.setItem("currentInput", intInput.value);
     window.sessionStorage.setItem("currentResult", result.value);
-    window.sessionStorage.setItem("currentCalculation", calculation.innerHTML);    
+    window.sessionStorage.setItem("currentCalculation", calculation.innerHTML);  
+    window.sessionStorage.setItem("currentDescription", aboutText.innerHTML);  
 });
 
 function setType() 
@@ -248,6 +251,7 @@ function convertInput() {
     // Binary to Decimal
     if (primaryIntType.value == "Binary" && secondaryIntType.value == "Decimal") {
         result.value = binToDec(intInput.value);
+        aboutText.innerHTML = "For binary number with n digits: d[n-1] ... d[[3] d[2] d[1] d[0]. The decimal number is equal to the sum of binary digits (dn) times their power of 2 (2n): decimal = d0×20 + d1×21 + d2×22 + ...";
     }
     // Octal to Decimal
     else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Decimal") {
@@ -688,10 +692,10 @@ function hexToOct(num)
     // Check darkMode state and set on load (keeps on refresh)
     if (darkMode === "enabled") {
         enableDarkMode();
-        swapBtn.classList.add("filter-white");
-        appsIcon.classList.add("filter-white");
-        infoIcon.classList.add("filter-white");
-        themeIcon.classList.add("filter-white");
+        swapBtn.classList.add("filter-grey");
+        appsIcon.classList.add("filter-grey");
+        infoIcon.classList.add("filter-grey");
+        themeIcon.classList.add("filter-grey");
     }
 
     // Change theme when button is clicked
@@ -700,17 +704,17 @@ function hexToOct(num)
         
         if (darkMode !== "enabled") {
             enableDarkMode();
-            swapBtn.classList.add("filter-white");
-            appsIcon.classList.add("filter-white");
-            infoIcon.classList.add("filter-white");
-            themeIcon.classList.add("filter-white");
+            swapBtn.classList.add("filter-grey");
+            appsIcon.classList.add("filter-grey");
+            infoIcon.classList.add("filter-grey");
+            themeIcon.classList.add("filter-grey");
         }
         else {
             disableDarkMode();
-            swapBtn.classList.remove("filter-white");
-            appsIcon.classList.remove("filter-white");
-            infoIcon.classList.remove("filter-white");
-            themeIcon.classList.remove("filter-white");
+            swapBtn.classList.remove("filter-grey");
+            appsIcon.classList.remove("filter-grey");
+            infoIcon.classList.remove("filter-grey");
+            themeIcon.classList.remove("filter-grey");
         }
     }
 /////

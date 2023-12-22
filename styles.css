@@ -23,7 +23,7 @@
     --secondary-color: rgb(255, 255, 255);
     --window-color: rgb(41, 42, 45);
 }
-.filter-white { filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(350deg) brightness(107%) contrast(102%); }
+.filter-grey { filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(350deg) brightness(107%) contrast(102%); }
 
 
 /* MAIN COMPONENTS */
@@ -51,8 +51,9 @@ html {
     z-index: -1;
     opacity: .75;
 }
-input,
-.input-box {
+input {
+    display: flex;
+    align-items: center;
     background: var(--primary-color);
     color: var(--secondary-color);
     max-height: 2.5rem;
@@ -62,6 +63,17 @@ input,
     border: 1px solid grey;
     border-radius: 1rem;
     cursor: pointer;
+}
+.text-box {
+    display: flex;
+    align-items: center;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    font-family: "Poppins-Regular";
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    border: 1px solid grey;
+    border-radius: 1rem;
 }
 
 
@@ -226,7 +238,7 @@ hr {
 
 .action-btns {
     display: flex;
-    margin: 2rem 0;
+    flex-flow: wrap;
 }
 .btn {
     display: flex;
@@ -238,7 +250,7 @@ hr {
     background-color: rgb(230, 230, 230);
     color: #5a5a5a;
     padding: 1rem 2rem;
-    margin-right: 1rem;
+    margin: 1rem 1rem 1rem 0;
     border: none;
     border-radius: 1rem;
     cursor: pointer;
@@ -368,7 +380,6 @@ hr {
     padding: 1rem;
     border: 1px solid grey;
     border-radius: 1rem;
-    cursor: pointer;
 
     width: 100%;
     max-height: 300px;
@@ -405,8 +416,8 @@ hr {
 /* ---------------------------------------------------------------------- */
 @media (max-width: 1600px) {
     body {
-        width: 60vw;
-        height: 60vh;
+        width: 80vw;
+        height: 70vh;
     }
 }
 
@@ -415,12 +426,31 @@ hr {
 /* ---------------------------------------------------------------------- */
 @media (max-width: 900px) {
     body {
-        width: 80vw;
+        width: 75vw;
         height: 80vh;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }
-    .main { flex-direction: column; }
-    .selection { flex-direction: column; }
-    .header img,
+    .main { 
+        flex-direction: column; 
+        margin-bottom: 2rem;
+    }
+    .main-ctnr {
+        height: 100%;
+        overflow-x: visible;
+        overflow-y: visible;
+        min-height: fit-content;
+        max-height: fit-content;
+    }
+    .selection { 
+        flex-direction: column; 
+        align-items: baseline;
+    }
+    #swap-btn {
+        margin-bottom: 1rem;
+        transform: translateX(17rem);
+        scale: 125%;
+    }
     .dropdown-ctnr {
         margin-bottom: 1rem;
         margin-left: 0;
