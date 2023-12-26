@@ -405,6 +405,7 @@ hr {
 }
 .calculation-box::-webkit-scrollbar-thumb:hover { background: rgb(190, 190, 190); }
 #copyMsg {
+    display: none;
     background-color: lightgreen;
     color: black;
     max-width: fit-content;

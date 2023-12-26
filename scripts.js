@@ -78,6 +78,7 @@ function setType()
 function copyCalculation() {
     let calcString = calculation.innerHTML;
     navigator.clipboard.writeText(calcString);
+    copyMsg.style.display = "block";
     copyMsg.innerHTML = "Copied calculation to clipboard";
 }
 
