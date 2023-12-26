@@ -77,15 +77,8 @@ function setType()
 
 function copyCalculation() {
     let calcString = calculation.innerHTML;
-    if (calcString != "") {
-        navigator.clipboard.writeText(calcString);
-        copyMsg.innerHTML = "Copied calculation to clipboard";
-        copyMsg.style.color = "green";
-    } 
-    else {
-        copyMsg.innerHTML = "You need to make a conversion before copying the calculation";
-        copyMsg.style.color = "#c20202";
-    }
+    navigator.clipboard.writeText(calcString);
+    copyMsg.innerHTML = "Copied calculation to clipboard";
 }
 
 function setInputPattern()
