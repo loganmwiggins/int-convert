@@ -281,22 +281,33 @@ function convertInput() {
     // Binary to Octal
     else if (primaryIntType.value == "Binary" && secondaryIntType.value == "Octal") {
         result.value = binToOct(intInput.value);
-        aboutText.innerHTML = "Convert every 3 binary digits (start from bit 0) to 1 octal digit, with this table:<br> <table class='about-table'><tr><td>Binary<sub>(2)</sub></td><td>Octal<sub>(8)</sub></td></tr><tr><td>000</td><td>0</td></tr><tr><td>001</td><td>1</td></tr><tr><td>010</td><td>2</td></tr><tr><td>011</td><td>3</td></tr><tr><td>100</td><td>4</td></tr><tr><td>101</td><td>5</td></tr><tr><td>110</td><td>6</td></tr><tr><td>111</td><td>7</td></tr></table>";
+        aboutText.innerHTML = "Convert every 3 binary digits (start from bit 0) to 1 octal digit, with this table:<br><table class='about-table'><tr><td>Binary<sub>(2)</sub></td><td>Octal<sub>(8)</sub></td></tr><tr><td>000</td><td>0</td></tr><tr><td>001</td><td>1</td></tr><tr><td>010</td><td>2</td></tr><tr><td>011</td><td>3</td></tr><tr><td>100</td><td>4</td></tr><tr><td>101</td><td>5</td></tr><tr><td>110</td><td>6</td></tr><tr><td>111</td><td>7</td></tr></table>";
     }
     // Binary to Hexadecimal
     else if (primaryIntType.value == "Binary" && secondaryIntType.value == "Hexadecimal") {
         result.value = binToHex(intInput.value);
-        aboutText.innerHTML = "Convert every 4 binary digits (start from bit 0) to 1 hexadecimal digit, with this table:<br> <table class='about-table'><tr><td>Binary<sub>(2)</sub></td><td>Hex<sub>(16)</sub></td></tr><tr><td>0000</td><td>0</td></tr><tr><td>0001</td><td>1</td></tr><tr><td>0010</td><td>2</td></tr><tr><td>0011</td><td>3</td></tr><tr><td>0100</td><td>4</td></tr><tr><td>0101</td><td>5</td></tr><tr><td>0110</td><td>6</td></tr><tr><td>0111</td><td>7</td></tr><tr><td>1000</td><td>8</td></tr><tr><td>1001</td><td>9</td></tr><tr><td>1010</td><td>A</td></tr><tr><td>1011</td><td>B</td></tr><tr><td>1100</td><td>C</td></tr><tr><td>1101</td><td>D</td></tr><tr><td>1110</td><td>E</td></tr><tr><td>1111</td><td>F</td></tr></table>";
+        aboutText.innerHTML = "Convert every 4 binary digits (start from bit 0) to 1 hexadecimal digit, with this table:<br><table class='about-table'><tr><td>Binary<sub>(2)</sub></td><td>Hex<sub>(16)</sub></td></tr><tr><td>0000</td><td>0</td></tr><tr><td>0001</td><td>1</td></tr><tr><td>0010</td><td>2</td></tr><tr><td>0011</td><td>3</td></tr><tr><td>0100</td><td>4</td></tr><tr><td>0101</td><td>5</td></tr><tr><td>0110</td><td>6</td></tr><tr><td>0111</td><td>7</td></tr><tr><td>1000</td><td>8</td></tr><tr><td>1001</td><td>9</td></tr><tr><td>1010</td><td>A</td></tr><tr><td>1011</td><td>B</td></tr><tr><td>1100</td><td>C</td></tr><tr><td>1101</td><td>D</td></tr><tr><td>1110</td><td>E</td></tr><tr><td>1111</td><td>F</td></tr></table>";
     }
     // Octal to Binary
     else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Binary") {
         result.value = octToBin(intInput.value);
-        aboutText.innerHTML = "Convert every octal digit (start with lowest digit) to 3 binary digits, with this table:<br> <table class='about-table'><tr><td>Octal<sub>(8)</sub></td><td>Binary<sub>(2)</sub></td></tr><tr><td>0</td><td>000</td></tr><tr><td>1</td><td>001</td></tr><tr><td>2</td><td>010</td></tr><tr><td>3</td><td>011</td></tr><tr><td>4</td><td>100</td></tr><tr><td>5</td><td>101</td></tr><tr><td>6</td><td>110</td></tr><tr><td>7</td><td>111</td></tr></table>";
+        aboutText.innerHTML = "Convert every octal digit (start with lowest digit) to 3 binary digits, with this table:<br><table class='about-table'><tr><td>Octal<sub>(8)</sub></td><td>Binary<sub>(2)</sub></td></tr><tr><td>0</td><td>000</td></tr><tr><td>1</td><td>001</td></tr><tr><td>2</td><td>010</td></tr><tr><td>3</td><td>011</td></tr><tr><td>4</td><td>100</td></tr><tr><td>5</td><td>101</td></tr><tr><td>6</td><td>110</td></tr><tr><td>7</td><td>111</td></tr></table>";
     } 
     // Hexadecimal to Binary
     else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Binary") {
         result.value = hexToBin(intInput.value);
-        aboutText.innerHTML = "Convert every hex digit (start with lowest digit) to 4 binary digits, with this table:<br> <table class='about-table'><tr><td>Hex<sub>(16)</sub></td><td>Binary<sub>(2)</sub></td></tr><tr><td>0</td><td>0000</td></tr><tr><td>1</td><td>0001</td></tr><tr><td>2</td><td>0010</td></tr><tr><td>3</td><td>0011</td></tr><tr><td>4</td><td>0100</td></tr><tr><td>5</td><td>0101</td></tr><tr><td>6</td><td>0110</td></tr><tr><td>7</td><td>0111</td></tr><tr><td>8</td><td>1000</td></tr><tr><td>9</td><td>1001</td></tr><tr><td>A</td><td>1010</td></tr><tr><td>B</td><td>1011</td></tr><tr><td>C</td><td>1100</td></tr><tr><td>D</td><td>1101</td></tr><tr><td>E</td><td>1110</td></tr><tr><td>F</td><td>1111</td></tr></table>";
+        aboutText.innerHTML = "Convert every hex digit (start with lowest digit) to 4 binary digits, with this table:<br><table class='about-table'><tr><td>Hex<sub>(16)</sub></td><td>Binary<sub>(2)</sub></td></tr><tr><td>0</td><td>0000</td></tr><tr><td>1</td><td>0001</td></tr><tr><td>2</td><td>0010</td></tr><tr><td>3</td><td>0011</td></tr><tr><td>4</td><td>0100</td></tr><tr><td>5</td><td>0101</td></tr><tr><td>6</td><td>0110</td></tr><tr><td>7</td><td>0111</td></tr><tr><td>8</td><td>1000</td></tr><tr><td>9</td><td>1001</td></tr><tr><td>A</td><td>1010</td></tr><tr><td>B</td><td>1011</td></tr><tr><td>C</td><td>1100</td></tr><tr><td>D</td><td>1101</td></tr><tr><td>E</td><td>1110</td></tr><tr><td>F</td><td>1111</td></tr></table>";
+    } 
+    // Octal to Hexadecimal
+    else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Hexadecimal") {
+        result.value = octToHex(intInput.value);
+        aboutText.innerHTML = "Convert every octal digit to 3 binary digits, then convert every 4 binary digits to 1 hex digit (see conversion tables below).<br><br>Convert every octal digit to 3 binary digits, with this table:<br><table class='about-table'><tr><td>Octal<sub>(8)</sub></td><td>Binary<sub>(2)</sub></td></tr><tr><td>0</td><td>000</td></tr><tr><td>1</td><td>001</td></tr><tr><td>2</td><td>010</td></tr><tr><td>3</td><td>011</td></tr><tr><td>4</td><td>100</td></tr><tr><td>5</td><td>101</td></tr><tr><td>6</td><td>110</td></tr><tr><td>7</td><td>111</td></tr></table><br>Then convert every 4 binary digits (from bit 0) to 1 hex digit, with this table:<br><table class='about-table'><tr><td>Binary<sub>(2)</sub></td><td>Hex<sub>(16)</sub></td></tr><tr><td>0000</td><td>0</td></tr><tr><td>0001</td><td>1</td></tr><tr><td>0010</td><td>2</td></tr><tr><td>0011</td><td>3</td></tr><tr><td>0100</td><td>4</td></tr><tr><td>0101</td><td>5</td></tr><tr><td>0110</td><td>6</td></tr><tr><td>0111</td><td>7</td></tr><tr><td>1000</td><td>8</td></tr><tr><td>1001</td><td>9</td></tr><tr><td>1010</td><td>A</td></tr><tr><td>1011</td><td>B</td></tr><tr><td>1100</td><td>C</td></tr><tr><td>1101</td><td>D</td></tr><tr><td>1110</td><td>E</td></tr><tr><td>1111</td><td>F</td></tr></table>";
+    } 
+    // Hexadecimal to Octal
+    else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Octal") {
+        result.value = hexToOct(intInput.value);
+        
+        aboutText.innerHTML = "Convert each hex digit to 4 binary digits and then convert each 3 binary digits to octal digits (see conversion tables below).<br><br>Convert every hex digit (start with lowest digit) to 4 binary digits, with this table:<br><table class='about-table'><tr><td>Hex<sub>(16)</sub></td><td>Binary<sub>(2)</sub></td></tr><tr><td>0</td><td>0000</td></tr><tr><td>1</td><td>0001</td></tr><tr><td>2</td><td>0010</td></tr><tr><td>3</td><td>0011</td></tr><tr><td>4</td><td>0100</td></tr><tr><td>5</td><td>0101</td></tr><tr><td>6</td><td>0110</td></tr><tr><td>7</td><td>0111</td></tr><tr><td>8</td><td>1000</td></tr><tr><td>9</td><td>1001</td></tr><tr><td>A</td><td>1010</td></tr><tr><td>B</td><td>1011</td></tr><tr><td>C</td><td>1100</td></tr><tr><td>D</td><td>1101</td></tr><tr><td>E</td><td>1110</td></tr><tr><td>F</td><td>1111</td></tr></table><br>Then convert every 3 binary digits (from bit 0) to 1 octal digit, with this table:<br><table class='about-table'><tr><td>Binary<sub>(2)</sub></td><td>Octal<sub>(8)</sub></td></tr><tr><td>000</td><td>0</td></tr><tr><td>001</td><td>1</td></tr><tr><td>010</td><td>2</td></tr><tr><td>011</td><td>3</td></tr><tr><td>100</td><td>4</td></tr><tr><td>101</td><td>5</td></tr><tr><td>110</td><td>6</td></tr><tr><td>111</td><td>7</td></tr></table>";
     } 
     else { result.value = intInput.value; }
 }
@@ -605,10 +616,7 @@ function octToBin(num)
 
     return result;
 }
-function octToHex(num)
-{
 
-}
 function hexToBin(num)
 {
     let hexNum = num;
@@ -649,9 +657,147 @@ function hexToBin(num)
 
     return result;
 }
+function octToHex(num)
+{
+    let octNum = num;
+    let octNumLength = octNum.toString().length;
+    let formula = "";
+    let chunks = "";
+    let result = octToBin(octNum);  // Convert oct to bin
+
+    // OUTPUT CALCULATION
+    // Print full oct num
+    formula += octNum + "<br>= ";    
+    
+    // Print digit-separated full oct num
+    for (let i=0; i < octNumLength; i++)    
+    {
+        let currDigit = octNum[i];
+        formula += currDigit + " ";
+    }
+
+    // Print 3-bit-separated binary result
+    let resLength = result.toString().length;
+    let tempResult = result;
+    for (let i=0; i < result.toString().length; i+=3)   
+    {
+        if (resLength >= 3) {
+            currBlock = tempResult.toString().slice(resLength-3, resLength);
+            tempResult = tempResult.toString().slice(0, resLength-3);
+            resLength -= 3;
+        }
+        else {
+            currBlock = tempResult.toString().slice(0, resLength);
+        }
+
+        chunks = currBlock + " " + chunks;
+    }
+    formula += "<br>= " + chunks;    
+
+    // Print 4-bit-separated binary result
+    resLength = result.toString().length;
+    tempResult = result;
+    chunks = "";
+    for (let i=0; i < result.toString().length; i+=4)   
+    {
+        if (resLength >= 4) {
+            currBlock = tempResult.toString().slice(resLength-4, resLength);
+            tempResult = tempResult.toString().slice(0, resLength-4);
+            resLength -= 4;
+        }
+        else {
+            currBlock = tempResult.toString().slice(0, resLength);
+        }
+
+        chunks = currBlock + " " + chunks;
+    }
+    formula += "<br>= " + chunks;
+
+    // Convert bin to oct
+    result = binToHex(result);  
+
+    // Print digit-separated full oct num
+    resLength = result.toString().length;
+    tempResult = result;
+    formula += "<br>= ";
+    for (let i=0; i < resLength; i++)    
+    {
+        let currDigit = tempResult[i];
+        formula += currDigit + " ";
+    }
+
+    // Print and return final result
+    formula += "<br>= " + result;
+    calculation.innerHTML = formula;    
+
+    return result;
+}
 function hexToOct(num)
 {
+    let hexNum = num;
+    let hexNumLength = hexNum.toString().length;
+    let formula = "";
+    let chunks = "";
+    let result = hexToBin(hexNum);  // Convert hex to bin
 
+    // Output calculation
+    formula += hexNum + "<br>= ";           // print full hex num
+    for (let i=0; i < hexNumLength; i++)    // print digit-separated full hex num
+    {
+        let currDigit = hexNum[i];
+        formula += currDigit + " ";
+    }
+    
+    let resLength = result.toString().length;
+    let tempResult = result;
+    for (let i=0; i < result.toString().length; i+=4)   // print 4-bit-separated binary result
+    {
+        if (resLength >= 4) {
+            currBlock = tempResult.toString().slice(resLength-4, resLength);
+            tempResult = tempResult.toString().slice(0, resLength-4);
+            resLength -= 4;
+        }
+        else {
+            currBlock = tempResult.toString().slice(0, resLength);
+        }
+
+        chunks = currBlock + " " + chunks;
+    }
+    formula += "<br>= " + chunks;
+
+    resLength = result.toString().length;
+    tempResult = result;
+    chunks = "";
+    for (let i=0; i < result.toString().length; i+=3)   // print 3-bit-separated binary result
+    {
+        if (resLength >= 3) {
+            currBlock = tempResult.toString().slice(resLength-3, resLength);
+            tempResult = tempResult.toString().slice(0, resLength-3);
+            resLength -= 3;
+        }
+        else {
+            currBlock = tempResult.toString().slice(0, resLength);
+        }
+
+        chunks = currBlock + " " + chunks;
+    }
+    formula += "<br>= " + chunks;
+
+    result = binToOct(result);  // Convert bin to oct
+
+    resLength = result.toString().length;
+    tempResult = result;
+    formula += "<br>= ";
+    for (let i=0; i < resLength; i++)    // print digit-separated full oct num
+    {
+        let currDigit = tempResult[i];
+        formula += currDigit + " ";
+    }
+
+    formula += "<br>= " + result;
+    calculation.innerHTML = formula;    // print final result
+
+    return result;
 }
 
 
