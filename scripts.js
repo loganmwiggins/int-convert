@@ -231,7 +231,6 @@ function clearInput() {
     intInput.value = "";
     result.value = "";
     calculation.innerHTML = "";
-    calculation.style.marginTop = "0";
     copyMsg.innerHTML = "";
 
     checkEmpty();
@@ -251,44 +250,53 @@ function convertInput() {
     // Binary to Decimal
     if (primaryIntType.value == "Binary" && secondaryIntType.value == "Decimal") {
         result.value = binToDec(intInput.value);
-        aboutText.innerHTML = "For binary number with n digits: d[n-1] ... d[[3] d[2] d[1] d[0]. The decimal number is equal to the sum of binary digits (dn) times their power of 2 (2n): decimal = d0×20 + d1×21 + d2×22 + ...";
+        aboutText.innerHTML = "For binary number, b,  with n digits:<br> b<sub>n-1</sub> ... b<sub>3</sub> b<sub>2</sub> b<sub>1</sub> b<sub>0</sub><br><br> The decimal number is equal to the sum of binary digits (b<sub>n</sub>) times their power of 2 (2<sup>n</sup>):<br> Result<sub>(dec)</sub> = (b<sub>0</sub> * 2<sup>0</sup>) + (b<sub>1</sub> * 2<sup>1</sup>) + (b<sub>2</sub> * 2<sup>2</sup>) + ...";
     }
     // Octal to Decimal
     else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Decimal") {
         result.value = octToDec(intInput.value);
+        aboutText.innerHTML = "For octal number, c,  with n digits:<br> c<sub>n-1</sub> ... c<sub>3</sub> c<sub>2</sub> c<sub>1</sub> c<sub>0</sub><br><br> Multiply each digit of the octal number with its corresponding power of 8 and sum:<br> Result<sub>(dec)</sub> = (c<sub>n-1</sub> * 8<sup>n-1</sup>) + ... + (c<sub>3</sub> * 8<sup>3</sup>) + (c<sub>2</sub> * 8<sup>2</sup>) + (c<sub>1</sub> * 8<sup>1</sup>) + (c<sub>0</sub> * 8<sup>0</sup>)";
     }
     // Hexadecimal to Decimal
     else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Decimal") {
         result.value = hexToDec(intInput.value);
+        aboutText.innerHTML = "For hexadecimal number, h,  with n digits:<br> h<sub>n-1</sub> ... h<sub>3</sub> h<sub>2</sub> h<sub>1</sub> h<sub>0</sub><br><br> Multiply each digit of the hex number with its corresponding power of 16 and sum:<br> Result<sub>(dec)</sub> = (h<sub>n-1</sub> * 16<sup>n-1</sup>) + ... + (h<sub>3</sub> * 16<sup>3</sup>) + (h<sub>2</sub> * 16<sup>2</sup>) + (h<sub>1</sub> * 16<sup>1</sup>) + (h<sub>0</sub> * 16<sup>0</sup>)";
     }
     // Decimal to Binary
     else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Binary") {
         result.value = decToBin(intInput.value);
+        aboutText.innerHTML = "Divide the decimal number by the base 2 to get the binary digits from the remainders. Once you reach a quotient of zero, put the remainders together in reverse order to find your result.";
     }
     // Decimal to Octal
     else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Octal") {
         result.value = decToOct(intInput.value);
+        aboutText.innerHTML = "Divide the decimal number by the base 8 to get the octal digits from the remainders. Once you reach a quotient of zero, put the remainders together in reverse order to find your result.";
     }
     // Decimal to Hexadecimal
     else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Hexadecimal") {
         result.value = decToHex(intInput.value);
+        aboutText.innerHTML = "Divide the decimal number by the base 16 to get the hexadecimal digits from the remainders. Once you reach a quotient of zero, put the remainders together in reverse order to find your result.<br> Be sure to convert any remainders with a value of 10-15 with their corresponding hex letters, A-F.";
     }
     //////////
     // Binary to Octal
     else if (primaryIntType.value == "Binary" && secondaryIntType.value == "Octal") {
         result.value = binToOct(intInput.value);
+        aboutText.innerHTML = "Convert every 3 binary digits (start from bit 0) to 1 octal digit, with this table:<br> <table class='about-table'><tr><td>Binary<sub>(2)</sub></td><td>Octal<sub>(8)</sub></td></tr><tr><td>000</td><td>0</td></tr><tr><td>001</td><td>1</td></tr><tr><td>010</td><td>2</td></tr><tr><td>011</td><td>3</td></tr><tr><td>100</td><td>4</td></tr><tr><td>101</td><td>5</td></tr><tr><td>110</td><td>6</td></tr><tr><td>111</td><td>7</td></tr></table>";
     }
     // Binary to Hexadecimal
     else if (primaryIntType.value == "Binary" && secondaryIntType.value == "Hexadecimal") {
         result.value = binToHex(intInput.value);
+        aboutText.innerHTML = "Convert every 4 binary digits (start from bit 0) to 1 hexadecimal digit, with this table:<br> <table class='about-table'><tr><td>Binary<sub>(2)</sub></td><td>Hex<sub>(16)</sub></td></tr><tr><td>0000</td><td>0</td></tr><tr><td>0001</td><td>1</td></tr><tr><td>0010</td><td>2</td></tr><tr><td>0011</td><td>3</td></tr><tr><td>0100</td><td>4</td></tr><tr><td>0101</td><td>5</td></tr><tr><td>0110</td><td>6</td></tr><tr><td>0111</td><td>7</td></tr><tr><td>1000</td><td>8</td></tr><tr><td>1001</td><td>9</td></tr><tr><td>1010</td><td>A</td></tr><tr><td>1011</td><td>B</td></tr><tr><td>1100</td><td>C</td></tr><tr><td>1101</td><td>D</td></tr><tr><td>1110</td><td>E</td></tr><tr><td>1111</td><td>F</td></tr></table>";
     }
     // Octal to Binary
     else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Binary") {
         result.value = octToBin(intInput.value);
+        aboutText.innerHTML = "Convert every octal digit (start with lowest digit) to 3 binary digits, with this table:<br> <table class='about-table'><tr><td>Octal<sub>(8)</sub></td><td>Binary<sub>(2)</sub></td></tr><tr><td>0</td><td>000</td></tr><tr><td>1</td><td>001</td></tr><tr><td>2</td><td>010</td></tr><tr><td>3</td><td>011</td></tr><tr><td>4</td><td>100</td></tr><tr><td>5</td><td>101</td></tr><tr><td>6</td><td>110</td></tr><tr><td>7</td><td>111</td></tr></table>";
     } 
     // Hexadecimal to Binary
     else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Binary") {
         result.value = hexToBin(intInput.value);
+        aboutText.innerHTML = "Convert every hex digit (start with lowest digit) to 4 binary digits, with this table:<br> <table class='about-table'><tr><td>Hex<sub>(16)</sub></td><td>Binary<sub>(2)</sub></td></tr><tr><td>0</td><td>0000</td></tr><tr><td>1</td><td>0001</td></tr><tr><td>2</td><td>0010</td></tr><tr><td>3</td><td>0011</td></tr><tr><td>4</td><td>0100</td></tr><tr><td>5</td><td>0101</td></tr><tr><td>6</td><td>0110</td></tr><tr><td>7</td><td>0111</td></tr><tr><td>8</td><td>1000</td></tr><tr><td>9</td><td>1001</td></tr><tr><td>A</td><td>1010</td></tr><tr><td>B</td><td>1011</td></tr><tr><td>C</td><td>1100</td></tr><tr><td>D</td><td>1101</td></tr><tr><td>E</td><td>1110</td></tr><tr><td>F</td><td>1111</td></tr></table>";
     } 
     else { result.value = intInput.value; }
 }
@@ -317,14 +325,13 @@ function binToDec(num)
         
         // Creating calculation formula string
         if (i === parseInt(binNumLength) - 1) {
-            formula = "(" + currDigit.toString() + " * 2^" + i + ")" + formula; 
+            formula = "(" + currDigit.toString() + " * 2<sup>" + i + "</sup>)" + formula; 
         }
         else {
-            formula = " + (" + currDigit.toString() + " * 2^" + i + ")" + formula; 
+            formula = " + (" + currDigit.toString() + " * 2<sup>" + i + "</sup>)" + formula; 
         }
     }
     calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
-    calculation.style.marginTop = ".5rem";  // Add margin to output
 
     return decNum;
 }
@@ -344,14 +351,13 @@ function octToDec(num)
         
         // Creating calculation formula string
         if (i === parseInt(octNumLength) - 1) {
-            formula = "(" + currDigit.toString() + " * 8^" + i + ")" + formula; 
+            formula = "(" + currDigit.toString() + " * 8<sup>" + i + "</sup>)" + formula; 
         }
         else {
-            formula = " + (" + currDigit.toString() + " * 8^" + i + ")" + formula; 
+            formula = " + (" + currDigit.toString() + " * 8<sup>" + i + "</sup>)" + formula; 
         }
     }
     calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
-    calculation.style.marginTop = ".5rem";  // Add margin to output
 
     return decNum;
 }
@@ -398,14 +404,13 @@ function hexToDec(num)
         
         // Creating calculation formula string
         if (i === parseInt(hexNumLength) - 1) {
-            formula = "(" + currDigit.toString() + " * 16^" + i + ")" + formula; 
+            formula = "(" + currDigit.toString() + " * 16<sup>" + i + "</sup>)" + formula; 
         }
         else {
-            formula = " + (" + currDigit.toString() + " * 16^" + i + ")" + formula; 
+            formula = " + (" + currDigit.toString() + " * 16<sup>" + i + "</sup>)" + formula; 
         }
     }
     calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
-    calculation.style.marginTop = ".5rem";  // Add margin to output
 
     return decNum;
 }
@@ -419,7 +424,7 @@ function decToBin(num)
 
     while (decNum != 0)
     {
-        formula += (decNum + "/2 = " + Math.floor(decNum/2) + " r" + decNum%2 + "<br>");
+        formula += (decNum + "/2 = " + Math.floor(decNum/2) + " <sub>R</sub>" + decNum%2 + "<br>");
         calculation.innerHTML = formula;
         result = decNum %2 + result;
         decNum = Math.floor(decNum/2);
@@ -435,7 +440,7 @@ function decToOct(num)
 
     while (decNum != 0)
     {
-        formula += (decNum + "/8 = " + Math.floor(decNum/8) + " r" + decNum%8 + "<br>");
+        formula += (decNum + "/8 = " + Math.floor(decNum/8) + " <sub>R</sub>" + decNum%8 + "<br>");
         calculation.innerHTML = formula;
         result = decNum %8 + result;
         decNum = Math.floor(decNum/8);
@@ -476,10 +481,10 @@ function decToHex(num)
         }
 
         if (hexDigit == 'A' || hexDigit == 'B' || hexDigit == 'C' || hexDigit == 'D' || hexDigit == 'E' || hexDigit == 'F') {
-            formula += (decNum + "/16 = " + Math.floor(decNum/16) + " r" + decNum%16 + "(" + hexDigit + ")<br>");
+            formula += (decNum + "/16 = " + Math.floor(decNum/16) + " <sub>R</sub>" + decNum%16 + "(" + hexDigit + ")<br>");
         }
         else {
-            formula += (decNum + "/16 = " + Math.floor(decNum/16) + " r" + decNum%16 + "<br>");
+            formula += (decNum + "/16 = " + Math.floor(decNum/16) + " <sub>R</sub>" + decNum%16 + "<br>");
         }
         calculation.innerHTML = formula;
         result = hexDigit + result;
