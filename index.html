@@ -52,7 +52,7 @@
                 </div>
                 <div class="main-ctnr-body">
                     <div class="input-ctnr">
-                        <p>Select types to convert</p>
+                        <p>Select types</p>
                         <div class="selection">
                             <select name="primaryIntType" id="primary-int-type" class="dropdown-ctnr" onchange="setType()">
                                 <option hidden disabled selected value>Choose...</option>
@@ -98,6 +98,17 @@
                             <p id="secondary-label-text"></p>
                         </div>
                     </div>
+                    <div class="input-ctnr" id="otherResultsCtnr">
+                        <p>Other Results</p>
+                        <div class="input-w-label">
+                            <div class="input-box readonly" id="otherResult1"></div>
+                            <p id="otherResultLabel1"></p>
+                        </div>
+                        <div class="input-w-label">
+                            <div class="input-box readonly" id="otherResult2"></div>
+                            <p id="otherResultLabel2"></p>
+                        </div>
+                    </div>
                     <div class="action-btns">
                         <button type="submit" form="int-form" class="btn" id="convertBtn">
                             <img src="assets/icons/enter-3.svg" style="scale: 120%" draggable="false">
@@ -112,23 +123,13 @@
                             Clear
                         </button>
                     </div>
-                    <div class="input-ctnr" id="otherResultsCtnr">
-                        <p>Other Results</p>
-                        <div class="input-w-label">
-                            <div class="input-box readonly" id="otherResult1"></div>
-                            <p id="otherResultLabel1"></p>
-                        </div>
-                        <div class="input-w-label">
-                            <div class="input-box readonly" id="otherResult2"></div>
-                            <p id="otherResultLabel2"></p>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <!-- Calculation container -->
             <div class="main-ctnr calculation-ctnr">
                 <div class="main-ctnr-hdr">
-                    <h3>Calculations</h3>
+                    <h3>Conversion Info</h3>
                 </div>
                 <div class="main-ctnr-body">
                     <div class="empty-msg" id="emptyMsg">
