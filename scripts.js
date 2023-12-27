@@ -1,48 +1,60 @@
-// Element variables
-let primaryIntType = document.getElementById("primary-int-type");
-let secondaryIntType = document.getElementById("secondary-int-type");
-let primaryTitle = document.getElementById("primary-title");
-let secondaryTitle = document.getElementById("secondary-title");
-let convertBtn = document.getElementById("convertBtn");
-let swapBtn = document.getElementById("swap-btn");
-let primaryLabelText = document.getElementById("primary-label-text");
-let secondaryLabelText = document.getElementById("secondary-label-text");
-let intForm = document.getElementById("int-form");
-let intInput = document.getElementById("int-input");
-let result = document.getElementById("result");
-let calculation = document.getElementById("calculation");
-let calculationData = document.getElementById("calculation-data");
-let emptyMsg = document.getElementById("emptyMsg");
-let copyMsg = document.getElementById("copyMsg");
-let aboutText = document.getElementById("aboutText");
+// VARIABLE DECLARATIONS
+    // * Input center
+    let primaryIntType = document.getElementById("primary-int-type");
+    let secondaryIntType = document.getElementById("secondary-int-type");
+    let primaryTitle = document.getElementById("primary-title");
+    let secondaryTitle = document.getElementById("secondary-title");
+    let convertBtn = document.getElementById("convertBtn");
+    let swapBtn = document.getElementById("swap-btn");
+    let primaryLabelText = document.getElementById("primary-label-text");
+    let secondaryLabelText = document.getElementById("secondary-label-text");
+    let intForm = document.getElementById("int-form");
+    let intInput = document.getElementById("int-input");
+    // * Calculation container
+    let result = document.getElementById("result");
+    let calculation = document.getElementById("calculation");
+    let calculationData = document.getElementById("calculation-data");
+    let emptyMsg = document.getElementById("emptyMsg");
+    let copyMsg = document.getElementById("copyMsg");
+    let aboutText = document.getElementById("aboutText");
+    let otherResultsCtnr = document.getElementById("otherResultsCtnr");
+    let otherResult1 = document.getElementById("otherResult1");
+    let otherResultLabel1 = document.getElementById("otherResultLabel1");
+    let otherResult2 = document.getElementById("otherResult2");
+    let otherResultLabel2 = document.getElementById("otherResultLabel2");
+//
 
 
-// onInit() {
-    // Remember integer types on refresh/submit
+// ON LOAD
+    // * Remember integer types on refresh/submit
     primaryIntType.value = sessionStorage.getItem("primaryType");
     secondaryIntType.value = sessionStorage.getItem("secondaryType");
-    
-    // Set text of elements on screen
+
+    // * Set text of elements on screen (when new dropdown type is selected)
     setType();
 
-    // Remember input and results on refresh/submit
+    // * Remember input and results on refresh/submit
     intInput.value = sessionStorage.getItem("currentInput");
     result.value = sessionStorage.getItem("currentResult");
     calculation.innerHTML = sessionStorage.getItem("currentCalculation");
     aboutText.innerHTML = sessionStorage.getItem("currentDescription");
+    otherResult1.innerHTML = sessionStorage.getItem("otherResult1");
+    otherResult2.innerHTML = sessionStorage.getItem("otherResult2");
 
-    // If values are cleared, hide calculation data and show buffer
+    // * If values are cleared, hide calculation data and show buffer
     checkEmpty();
-// }
+//
 
 
 // Functions
 intForm.addEventListener("submit", (e) => {
+    fillOtherResultValues();
     convertInput();
     window.sessionStorage.setItem("currentInput", intInput.value);
     window.sessionStorage.setItem("currentResult", result.value);
     window.sessionStorage.setItem("currentCalculation", calculation.innerHTML);  
-    window.sessionStorage.setItem("currentDescription", aboutText.innerHTML);  
+    window.sessionStorage.setItem("currentDescription", aboutText.innerHTML);  window.sessionStorage.setItem("otherResult1", otherResult1.innerHTML);
+    window.sessionStorage.setItem("otherResult2", otherResult2.innerHTML);
 });
 
 function setType() 
@@ -63,6 +75,8 @@ function setType()
     // Set text of label elements
     primaryLabelText.innerHTML = primaryIntType.value;
     secondaryLabelText.innerHTML = secondaryIntType.value;
+    fillOtherResultLabels();
+    if (primaryIntType.value)
 
     // Save types in session storage AND 
     window.sessionStorage.setItem("primaryType", primaryIntType.value);
@@ -79,7 +93,7 @@ function copyCalculation() {
     let calcString = calculation.innerHTML;
     navigator.clipboard.writeText(calcString);
     copyMsg.style.display = "block";
-    copyMsg.innerHTML = "Copied calculation to clipboard";
+    copyMsg.innerHTML = "Copied equation to clipboard";
 }
 
 function setInputPattern()
@@ -226,15 +240,19 @@ function clearInput() {
     result.value = "";
     calculation.innerHTML = "";
     copyMsg.innerHTML = "";
+    otherResult1.innerHTML = "";
+    otherResult2.innerHTML = "";
 
     checkEmpty();
 }
 function checkEmpty() {
     if (window.sessionStorage.getItem("currentResult") === null || result.value === "") {
+        otherResultsCtnr.style.display = "none";
         calculationData.style.display = "none";
         emptyMsg.style.display = "block";
     }
     else {
+        otherResultsCtnr.style.display = "block";
         calculationData.style.display = "block";
         emptyMsg.style.display = "none";
     }
@@ -269,7 +287,7 @@ function convertInput() {
     // Decimal to Hexadecimal
     else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Hexadecimal") {
         result.value = decToHex(intInput.value);
-        aboutText.innerHTML = "Divide the decimal number by the base 16 to get the hexadecimal digits from the remainders. Once you reach a quotient of zero, put the remainders together in reverse order to find your result.<br> Be sure to convert any remainders with a value of 10-15 with their corresponding hex letters, A-F.";
+        aboutText.innerHTML = "Divide the decimal number by the base 16 to get the hexadecimal digits from the remainders. Once you reach a quotient of zero, put the remainders together in reverse order to find your result.<br><br> Be sure to convert any remainders with a value of 10-15 with their corresponding hex letters, A-F.";
     }
     //////////
     // Binary to Octal
@@ -306,6 +324,140 @@ function convertInput() {
     else { result.value = intInput.value; }
 }
 
+function fillOtherResultValues() {
+    // Binary to Decimal
+    if (primaryIntType.value == "Binary" && secondaryIntType.value == "Decimal") {
+        otherResult1.innerHTML = binToOct(intInput.value);
+        otherResult2.innerHTML = binToHex(intInput.value);
+    }
+    // Octal to Decimal
+    else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Decimal") {
+        otherResult1.innerHTML = octToBin(intInput.value);
+        otherResult2.innerHTML = octToHex(intInput.value);
+    }
+    // Hexadecimal to Decimal
+    else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Decimal") {
+        otherResult1.innerHTML = hexToBin(intInput.value);
+        otherResult2.innerHTML = hexToOct(intInput.value);
+    }
+    // Decimal to Binary
+    else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Binary") {
+        otherResult1.innerHTML = decToOct(intInput.value);
+        otherResult2.innerHTML = decToHex(intInput.value);
+    }
+    // Decimal to Octal
+    else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Octal") {
+        otherResult1.innerHTML = decToBin(intInput.value);
+        otherResult2.innerHTML = decToHex(intInput.value);
+    }
+    // Decimal to Hexadecimal
+    else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Hexadecimal") {
+        otherResult1.innerHTML = decToBin(intInput.value);
+        otherResult2.innerHTML = decToOct(intInput.value);
+    }
+    //////////
+    // Binary to Octal
+    else if (primaryIntType.value == "Binary" && secondaryIntType.value == "Octal") {
+        otherResult1.innerHTML = binToDec(intInput.value);
+        otherResult2.innerHTML = binToHex(intInput.value);
+    }
+    // Binary to Hexadecimal
+    else if (primaryIntType.value == "Binary" && secondaryIntType.value == "Hexadecimal") {
+        otherResult1.innerHTML = binToOct(intInput.value);
+        otherResult2.innerHTML = binToDec(intInput.value);
+    }
+    // Octal to Binary
+    else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Binary") {
+        otherResult1.innerHTML = octToDec(intInput.value);
+        otherResult2.innerHTML = octToHex(intInput.value);
+    } 
+    // Hexadecimal to Binary
+    else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Binary") {
+        otherResult1.innerHTML = hexToOct(intInput.value);
+        otherResult2.innerHTML = hexToDec(intInput.value);
+    } 
+    // Octal to Hexadecimal
+    else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Hexadecimal") {
+        otherResult1.innerHTML = octToBin(intInput.value);
+        otherResult2.innerHTML = octToDec(intInput.value);
+    } 
+    // Hexadecimal to Octal
+    else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Octal") {
+        otherResult1.innerHTML = hexToBin(intInput.value);
+        otherResult2.innerHTML = hexToDec(intInput.value);
+    } 
+    else { 
+        otherResult1.innerHTML = intInput.value;
+        otherResult2.innerHTML = intInput.value;
+    }
+}
+function fillOtherResultLabels() {
+    // Binary to Decimal
+    if (primaryIntType.value == "Binary" && secondaryIntType.value == "Decimal") {
+        otherResultLabel1.innerHTML = "Octal";
+        otherResultLabel2.innerHTML = "Hexadecimal";
+    }
+    // Octal to Decimal
+    else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Decimal") {
+        otherResultLabel1.innerHTML = "Binary";
+        otherResultLabel2.innerHTML = "Hexadecimal";
+    }
+    // Hexadecimal to Decimal
+    else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Decimal") {
+        otherResultLabel1.innerHTML = "Binary";
+        otherResultLabel2.innerHTML = "Octal";
+    }
+    // Decimal to Binary
+    else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Binary") {
+        otherResultLabel1.innerHTML = "Octal";
+        otherResultLabel2.innerHTML = "Hexadecimal";
+    }
+    // Decimal to Octal
+    else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Octal") {
+        otherResultLabel1.innerHTML = "Binary";
+        otherResultLabel2.innerHTML = "Hexadecimal";
+    }
+    // Decimal to Hexadecimal
+    else if (primaryIntType.value == "Decimal" && secondaryIntType.value == "Hexadecimal") {
+        otherResultLabel1.innerHTML = "Binary";
+        otherResultLabel2.innerHTML = "Octal";
+    }
+    //////////
+    // Binary to Octal
+    else if (primaryIntType.value == "Binary" && secondaryIntType.value == "Octal") {
+        otherResultLabel1.innerHTML = "Decimal";
+        otherResultLabel2.innerHTML = "Hexadecimal";
+    }
+    // Binary to Hexadecimal
+    else if (primaryIntType.value == "Binary" && secondaryIntType.value == "Hexadecimal") {
+        otherResultLabel1.innerHTML = "Octal";
+        otherResultLabel2.innerHTML = "Decimal";
+    }
+    // Octal to Binary
+    else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Binary") {
+        otherResultLabel1.innerHTML = "Decimal";
+        otherResultLabel2.innerHTML = "Hexadecimal";
+    } 
+    // Hexadecimal to Binary
+    else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Binary") {
+        otherResultLabel1.innerHTML = "Octal";
+        otherResultLabel2.innerHTML = "Decimal";
+    } 
+    // Octal to Hexadecimal
+    else if (primaryIntType.value == "Octal" && secondaryIntType.value == "Hexadecimal") {
+        otherResultLabel1.innerHTML = "Binary";
+        otherResultLabel2.innerHTML = "Decimal";
+    } 
+    // Hexadecimal to Octal
+    else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Octal") {
+        otherResultLabel1.innerHTML = "Binary";
+        otherResultLabel2.innerHTML = "Decimal";
+    } 
+    else { 
+        otherResult1.innerHTML = intInput.value;
+        otherResult2.innerHTML = intInput.value;
+    }
+}
 
 
 
