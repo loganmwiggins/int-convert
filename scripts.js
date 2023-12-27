@@ -15,7 +15,6 @@
     let calculation = document.getElementById("calculation");
     let calculationData = document.getElementById("calculation-data");
     let emptyMsg = document.getElementById("emptyMsg");
-    let copyMsg = document.getElementById("copyMsg");
     let aboutText = document.getElementById("aboutText");
     let otherResultsCtnr = document.getElementById("otherResultsCtnr");
     let otherResult1 = document.getElementById("otherResult1");
@@ -89,12 +88,6 @@ function setType()
 
 
 
-function copyCalculation() {
-    let calcString = calculation.innerHTML;
-    navigator.clipboard.writeText(calcString);
-    copyMsg.style.display = "block";
-    copyMsg.innerHTML = "Copied equation to clipboard";
-}
 
 function setInputPattern()
 {
@@ -239,7 +232,6 @@ function clearInput() {
     intInput.value = "";
     result.value = "";
     calculation.innerHTML = "";
-    copyMsg.innerHTML = "";
     otherResult1.innerHTML = "";
     otherResult2.innerHTML = "";
 
