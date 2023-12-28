@@ -52,6 +52,7 @@ html {
     overflow-x: hidden;
     min-width: 100vw;
     min-height: 100vh;
+    min-height: 100svh;
     font-size: 62.5%; /* sets base font size to 10px (easy to use rem sizing) */
 }
 .bg-video {
@@ -59,6 +60,7 @@ html {
     top: 0;
     left: 0;
     min-height: 100vh;
+    min-height: 100svh;
     min-width: 100vw;
     z-index: -1;
     opacity: .75;
@@ -489,6 +491,7 @@ hr {
     body {
         width: 80vw;
         height: 70vh;
+        height: 70svh;
     }
 }
 
@@ -499,6 +502,7 @@ hr {
     body {
         width: 75vw;
         height: 80vh;
+        height: 80svh;
         overflow-x: hidden;
         overflow-y: scroll;
     }
