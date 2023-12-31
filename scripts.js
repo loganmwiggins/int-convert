@@ -1,16 +1,17 @@
 // VARIABLE DECLARATIONS
-    // * Input center
+    // > Input center
     let primaryIntType = document.getElementById("primary-int-type");
     let secondaryIntType = document.getElementById("secondary-int-type");
     let primaryTitle = document.getElementById("primary-title");
     let secondaryTitle = document.getElementById("secondary-title");
+    // > > Buttons
     let convertBtn = document.getElementById("convertBtn");
     let swapBtn = document.getElementById("swap-btn");
     let primaryLabelText = document.getElementById("primary-label-text");
     let secondaryLabelText = document.getElementById("secondary-label-text");
     let intForm = document.getElementById("int-form");
     let intInput = document.getElementById("int-input");
-    // * Calculation container
+    // > Calculation container
     let result = document.getElementById("result");
     let calculation = document.getElementById("calculation");
     let calculationData = document.getElementById("calculation-data");
@@ -960,11 +961,19 @@ function hexToOct(num)
 // DARK MODE
     let darkMode = localStorage.getItem("darkMode");    // Declare local storage var for dark mode
 
-    // Declare footer buttons and page icons
+    // Declare site header buttons and icons
     let appsIcon = document.getElementById("appsIcon");
     let infoIcon = document.getElementById("infoIcon");
     let themeBtn = document.getElementById("themeBtn");
     let themeIcon = document.getElementById("themeIcon");
+
+    // Declare body button icons
+    let convertBtnIcon = document.getElementById("convertBtnIcon");
+    let swapBtn2Icon = document.getElementById("swapBtn2Icon");
+    let clearBtnIcon = document.getElementById("clearBtnIcon");
+    convertBtnIcon.classList.add("filter-grey");
+    swapBtn2Icon.classList.add("filter-grey");
+    clearBtnIcon.classList.add("filter-grey");
 
     // Functions for enabling and disabling darkMode
     const enableDarkMode = () => {
@@ -981,10 +990,18 @@ function hexToOct(num)
     // Check darkMode state and set on load (keeps on refresh)
     if (darkMode === "enabled") {
         enableDarkMode();
-        swapBtn.classList.add("filter-grey");
-        appsIcon.classList.add("filter-grey");
-        infoIcon.classList.add("filter-grey");
-        themeIcon.classList.add("filter-grey");
+        // Site button icons
+        swapBtn.classList.add("filter-white");
+        appsIcon.classList.add("filter-white");
+        infoIcon.classList.add("filter-white");
+        themeIcon.classList.add("filter-white");
+        // Body button icons
+        convertBtnIcon.classList.remove("filter-grey");
+        swapBtn2Icon.classList.remove("filter-grey");
+        clearBtnIcon.classList.remove("filter-grey");
+        convertBtnIcon.classList.add("filter-white");
+        swapBtn2Icon.classList.add("filter-white");
+        clearBtnIcon.classList.add("filter-white");
     }
 
     // Change theme when button is clicked
@@ -993,22 +1010,39 @@ function hexToOct(num)
         
         if (darkMode !== "enabled") {
             enableDarkMode();
-            swapBtn.classList.add("filter-grey");
-            appsIcon.classList.add("filter-grey");
-            infoIcon.classList.add("filter-grey");
-            themeIcon.classList.add("filter-grey");
+            // Site button icons
+            swapBtn.classList.add("filter-white");
+            appsIcon.classList.add("filter-white");
+            infoIcon.classList.add("filter-white");
+            themeIcon.classList.add("filter-white");
+            // Body button icons
+            convertBtnIcon.classList.remove("filter-grey");
+            swapBtn2Icon.classList.remove("filter-grey");
+            clearBtnIcon.classList.remove("filter-grey");
+            convertBtnIcon.classList.add("filter-white");
+            swapBtn2Icon.classList.add("filter-white");
+            clearBtnIcon.classList.add("filter-white");
         }
         else {
             disableDarkMode();
-            swapBtn.classList.remove("filter-grey");
-            appsIcon.classList.remove("filter-grey");
-            infoIcon.classList.remove("filter-grey");
-            themeIcon.classList.remove("filter-grey");
+            // Site button icons
+            swapBtn.classList.remove("filter-white");
+            appsIcon.classList.remove("filter-white");
+            infoIcon.classList.remove("filter-white");
+            themeIcon.classList.remove("filter-white");
+            // Body button icons
+            convertBtnIcon.classList.remove("filter-white");
+            swapBtn2Icon.classList.remove("filter-white");
+            clearBtnIcon.classList.remove("filter-white");
+            convertBtnIcon.classList.add("filter-grey");
+            swapBtn2Icon.classList.add("filter-grey");
+            clearBtnIcon.classList.add("filter-grey");
         }
     }
 /////
 
-// OTHER FOOTER BUTTONS
+// OTHER HEADER BUTTONS
     function backToWigginsnet() {
         window.open("https://www.wigginsnet.com", "_blank");
     }
+/////
