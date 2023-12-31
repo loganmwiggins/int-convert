@@ -38,7 +38,7 @@
         rgb(0, 0, 0),
         rgb(30, 30, 30)
     );
-    --input-color: rgb(0, 0, 0);
+    --input-color: rgb(10, 10, 10);
     --input-readonly-color: rgb(20, 20, 20);
     --button-color: rgb(0, 0, 0);
     --button-hvr-color: rgb(10, 10, 10);
@@ -199,6 +199,7 @@ body {
 
 hr { 
     margin: 2rem 0; 
+    border-color: var(--button-color);
     opacity: .5;
 }
 
