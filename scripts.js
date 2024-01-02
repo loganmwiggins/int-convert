@@ -31,6 +31,9 @@
 //
 
 
+
+
+
 // ON LOAD
     // * Remember integer types on refresh/submit
     primaryIntType.value = sessionStorage.getItem("primaryType");
@@ -52,7 +55,7 @@
 //
 
 
-// Functions
+// FUNCTIONS
 intForm.addEventListener("submit", (e) => {
     fillOtherResultValues();
     convertInput();
@@ -94,8 +97,6 @@ function setType()
 }
 
 
-
-
 function setInputPattern()
 {
     if (primaryIntType.value == "Binary") {
@@ -122,7 +123,7 @@ function setInputPattern()
 
 function hideDropdownOpts()
 {
-    // Primary dropdown
+    // > Primary dropdown
     if (primaryIntType.value == "Binary") {
         for (let i=2; i <= 5; i++)
         {
@@ -178,7 +179,7 @@ function hideDropdownOpts()
         }
     }
 
-    // Secondary dropdown
+    // > Secondary dropdown
     if (secondaryIntType.value == "Binary") {
         for (let i=2; i <= 5; i++)
         {
@@ -464,492 +465,484 @@ function fillOtherResultLabels() {
 
 
 
-
-// ... to Decimal
-function binToDec(num) 
-{
-    let binNum = num;
-    let binNumLength = binNum.toString().length;
-    let decNum = 0;
-    let formula = "";
-
-    for (let i=0; i < binNumLength; i++)
+// TYPE TO TYPE CONVERSION LOGIC
+    function binToDec(num) 
     {
-        // Convert
-        let currDigit = binNum % 10;
-        decNum += currDigit * Math.pow(2, i);
-        binNum = Math.floor(binNum/10);
-        
-        // Creating calculation formula string
-        if (i === parseInt(binNumLength) - 1) {
-            formula = "(" + currDigit.toString() + " * 2<sup>" + i + "</sup>)" + formula; 
-        }
-        else {
-            formula = " + (" + currDigit.toString() + " * 2<sup>" + i + "</sup>)" + formula; 
-        }
-    }
-    calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
+        let binNum = num;
+        let binNumLength = binNum.toString().length;
+        let decNum = 0;
+        let formula = "";
 
-    return decNum;
-}
-function octToDec(num) 
-{
-    let octNum = num;
-    let octNumLength = octNum.toString().length;
-    let decNum = 0;
-    let formula = "";
-
-    for (let i=0; i < octNumLength; i++)
-    {
-        // Convert
-        let currDigit = octNum % 10;
-        decNum += currDigit * Math.pow(8, i);
-        octNum = Math.floor(octNum/10);
-        
-        // Creating calculation formula string
-        if (i === parseInt(octNumLength) - 1) {
-            formula = "(" + currDigit.toString() + " * 8<sup>" + i + "</sup>)" + formula; 
-        }
-        else {
-            formula = " + (" + currDigit.toString() + " * 8<sup>" + i + "</sup>)" + formula; 
-        }
-    }
-    calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
-
-    return decNum;
-}
-function hexToDec(num) 
-{
-    let hexNum = num.toString();
-    let hexNumLength = hexNum.length;
-    let decNum = 0;
-    let formula = "";
-
-    for (let i=0; i < hexNumLength; i++)
-    {
-        // Convert
-        let currDigit = hexNum[hexNumLength-i-1];
-
-        switch(currDigit)   // Change alpha characters to nums
+        for (let i=0; i < binNumLength; i++)
         {
-            case('A'):
-            case('a'):
-                currDigit = 10;
-                break;
-            case('B'):
-            case('b'):
-                currDigit = 11;
-                break;
-            case('C'):
-            case('c'):
-                currDigit = 12;
-                break;
-            case('D'):
-            case('d'):
-                currDigit = 13;
-                break;
-            case('E'):
-            case('e'):
-                currDigit = 14;
-                break;
-            case('F'):
-            case('f'):
-                currDigit = 15;
-                break;
+            // Convert
+            let currDigit = binNum % 10;
+            decNum += currDigit * Math.pow(2, i);
+            binNum = Math.floor(binNum/10);
+            
+            // Creating calculation formula string
+            if (i === parseInt(binNumLength) - 1) {
+                formula = "(" + currDigit.toString() + " * 2<sup>" + i + "</sup>)" + formula; 
+            }
+            else {
+                formula = " + (" + currDigit.toString() + " * 2<sup>" + i + "</sup>)" + formula; 
+            }
         }
-        decNum += currDigit * Math.pow(16, i);
-        
-        // Creating calculation formula string
-        if (i === parseInt(hexNumLength) - 1) {
-            formula = "(" + currDigit.toString() + " * 16<sup>" + i + "</sup>)" + formula; 
-        }
-        else {
-            formula = " + (" + currDigit.toString() + " * 16<sup>" + i + "</sup>)" + formula; 
-        }
+        calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
+
+        return decNum;
     }
-    calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
-
-    return decNum;
-}
-
-// Decimal to ...
-function decToBin(num) 
-{
-    let decNum = num;
-    let formula = "";
-    let result = "";
-
-    while (decNum != 0)
+    function octToDec(num) 
     {
-        formula += (decNum + "/2 = " + Math.floor(decNum/2) + " <sub>R</sub>" + decNum%2 + "<br>");
-        calculation.innerHTML = formula;
-        result = decNum %2 + result;
-        decNum = Math.floor(decNum/2);
-    }
+        let octNum = num;
+        let octNumLength = octNum.toString().length;
+        let decNum = 0;
+        let formula = "";
 
-    return result;
-}
-function decToOct(num) 
-{
-    let decNum = num;
-    let formula = "";
-    let result = "";
-
-    while (decNum != 0)
-    {
-        formula += (decNum + "/8 = " + Math.floor(decNum/8) + " <sub>R</sub>" + decNum%8 + "<br>");
-        calculation.innerHTML = formula;
-        result = decNum %8 + result;
-        decNum = Math.floor(decNum/8);
-    }
-
-    return result;
-}
-function decToHex(num) 
-{
-    let decNum = num;
-    let formula = "";
-    let result = "";
-
-    while (decNum != 0)
-    {
-        let hexDigit = decNum %16;
-
-        switch(hexDigit)   // Change alpha characters to nums
+        for (let i=0; i < octNumLength; i++)
         {
-            case(10):
-                hexDigit = "A";
-                break;
-            case(11):
-                hexDigit = "B";
-                break;
-            case(12):
-                hexDigit = "C";
-                break;
-            case(13):
-                hexDigit = "D";
-                break;
-            case(14):
-                hexDigit = "E";
-                break;
-            case(15):
-                hexDigit = "F";
-                break;
+            // Convert
+            let currDigit = octNum % 10;
+            decNum += currDigit * Math.pow(8, i);
+            octNum = Math.floor(octNum/10);
+            
+            // Creating calculation formula string
+            if (i === parseInt(octNumLength) - 1) {
+                formula = "(" + currDigit.toString() + " * 8<sup>" + i + "</sup>)" + formula; 
+            }
+            else {
+                formula = " + (" + currDigit.toString() + " * 8<sup>" + i + "</sup>)" + formula; 
+            }
+        }
+        calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
+
+        return decNum;
+    }
+    function hexToDec(num) 
+    {
+        let hexNum = num.toString();
+        let hexNumLength = hexNum.length;
+        let decNum = 0;
+        let formula = "";
+
+        for (let i=0; i < hexNumLength; i++)
+        {
+            // Convert
+            let currDigit = hexNum[hexNumLength-i-1];
+
+            switch(currDigit)   // Change alpha characters to nums
+            {
+                case('A'):
+                case('a'):
+                    currDigit = 10;
+                    break;
+                case('B'):
+                case('b'):
+                    currDigit = 11;
+                    break;
+                case('C'):
+                case('c'):
+                    currDigit = 12;
+                    break;
+                case('D'):
+                case('d'):
+                    currDigit = 13;
+                    break;
+                case('E'):
+                case('e'):
+                    currDigit = 14;
+                    break;
+                case('F'):
+                case('f'):
+                    currDigit = 15;
+                    break;
+            }
+            decNum += currDigit * Math.pow(16, i);
+            
+            // Creating calculation formula string
+            if (i === parseInt(hexNumLength) - 1) {
+                formula = "(" + currDigit.toString() + " * 16<sup>" + i + "</sup>)" + formula; 
+            }
+            else {
+                formula = " + (" + currDigit.toString() + " * 16<sup>" + i + "</sup>)" + formula; 
+            }
+        }
+        calculation.innerHTML = formula + " = " + decNum;    // Output calculation formula to DOM
+
+        return decNum;
+    }
+
+    function decToBin(num) 
+    {
+        let decNum = num;
+        let formula = "";
+        let result = "";
+
+        while (decNum != 0)
+        {
+            formula += (decNum + "/2 = " + Math.floor(decNum/2) + " <sub>R</sub>" + decNum%2 + "<br>");
+            calculation.innerHTML = formula;
+            result = decNum %2 + result;
+            decNum = Math.floor(decNum/2);
         }
 
-        if (hexDigit == 'A' || hexDigit == 'B' || hexDigit == 'C' || hexDigit == 'D' || hexDigit == 'E' || hexDigit == 'F') {
-            formula += (decNum + "/16 = " + Math.floor(decNum/16) + " <sub>R</sub>" + decNum%16 + "(" + hexDigit + ")<br>");
+        return result;
+    }
+    function decToOct(num) 
+    {
+        let decNum = num;
+        let formula = "";
+        let result = "";
+
+        while (decNum != 0)
+        {
+            formula += (decNum + "/8 = " + Math.floor(decNum/8) + " <sub>R</sub>" + decNum%8 + "<br>");
+            calculation.innerHTML = formula;
+            result = decNum %8 + result;
+            decNum = Math.floor(decNum/8);
         }
-        else {
-            formula += (decNum + "/16 = " + Math.floor(decNum/16) + " <sub>R</sub>" + decNum%16 + "<br>");
+
+        return result;
+    }
+    function decToHex(num) 
+    {
+        let decNum = num;
+        let formula = "";
+        let result = "";
+
+        while (decNum != 0)
+        {
+            let hexDigit = decNum %16;
+
+            switch(hexDigit)   // Change alpha characters to nums
+            {
+                case(10):
+                    hexDigit = "A";
+                    break;
+                case(11):
+                    hexDigit = "B";
+                    break;
+                case(12):
+                    hexDigit = "C";
+                    break;
+                case(13):
+                    hexDigit = "D";
+                    break;
+                case(14):
+                    hexDigit = "E";
+                    break;
+                case(15):
+                    hexDigit = "F";
+                    break;
+            }
+
+            if (hexDigit == 'A' || hexDigit == 'B' || hexDigit == 'C' || hexDigit == 'D' || hexDigit == 'E' || hexDigit == 'F') {
+                formula += (decNum + "/16 = " + Math.floor(decNum/16) + " <sub>R</sub>" + decNum%16 + "(" + hexDigit + ")<br>");
+            }
+            else {
+                formula += (decNum + "/16 = " + Math.floor(decNum/16) + " <sub>R</sub>" + decNum%16 + "<br>");
+            }
+            calculation.innerHTML = formula;
+            result = hexDigit + result;
+            decNum = Math.floor(decNum/16);
         }
+
+        return result;
+    }
+
+    function binToOct(num) 
+    {
+        let binNum = num;
+        let binNumLength = binNum.toString().length;
+        let currBlock = "";
+        let formula = binNum.toString() + "<br>= ";
+        let chunks = "";
+        let result = parseInt(binNum, 2).toString(8);
+
+        let currLength = binNumLength;
+        for (let i=0; i < binNumLength; i+=3)
+        {
+            if (currLength >= 3) {
+                currBlock = binNum.toString().slice(currLength-3, currLength);
+                binNum = binNum.toString().slice(0, currLength-3);
+                currLength -= 3;
+            }
+            else {
+                currBlock = binNum.toString().slice(0, currLength);
+            }
+
+            chunks = currBlock + " " + chunks;
+        }
+
+        // Construct formula string
+        formula += chunks + "<br>= ";
+        for (let i=0; i<result.length; i++)
+        {
+            formula += result[i] + " ";
+        }
+        formula += "<br>= " + result;
         calculation.innerHTML = formula;
-        result = hexDigit + result;
-        decNum = Math.floor(decNum/16);
-    }
 
-    return result;
-}
-
-// Others
-function binToOct(num) 
-{
-    let binNum = num;
-    let binNumLength = binNum.toString().length;
-    let currBlock = "";
-    let formula = binNum.toString() + "<br>= ";
-    let chunks = "";
-    let result = parseInt(binNum, 2).toString(8);
-
-    let currLength = binNumLength;
-    for (let i=0; i < binNumLength; i+=3)
+        return result;
+    }   
+    function binToHex(num)
     {
-        if (currLength >= 3) {
-            currBlock = binNum.toString().slice(currLength-3, currLength);
-            binNum = binNum.toString().slice(0, currLength-3);
-            currLength -= 3;
-        }
-        else {
-            currBlock = binNum.toString().slice(0, currLength);
+        let binNum = num;
+        let binNumLength = binNum.toString().length;
+        let currBlock = "";
+        let formula = binNum.toString() + "<br>= ";
+        let chunks = "";
+        let result = parseInt(binNum, 2).toString(16).toUpperCase();
+
+        let currLength = binNumLength;
+        for (let i=0; i < binNumLength; i+=4)
+        {
+            if (currLength >= 4) {
+                currBlock = binNum.toString().slice(currLength-4, currLength);
+                binNum = binNum.toString().slice(0, currLength-4);
+                currLength -= 4;
+            }
+            else {
+                currBlock = binNum.toString().slice(0, currLength);
+            }
+
+            chunks = currBlock + " " + chunks;
         }
 
-        chunks = currBlock + " " + chunks;
-    }
-
-    // Construct formula string
-    formula += chunks + "<br>= ";
-    for (let i=0; i<result.length; i++)
-    {
-        formula += result[i] + " ";
-    }
-    formula += "<br>= " + result;
-    calculation.innerHTML = formula;
-
-    return result;
-}   
-function binToHex(num)
-{
-    let binNum = num;
-    let binNumLength = binNum.toString().length;
-    let currBlock = "";
-    let formula = binNum.toString() + "<br>= ";
-    let chunks = "";
-    let result = parseInt(binNum, 2).toString(16).toUpperCase();
-
-    let currLength = binNumLength;
-    for (let i=0; i < binNumLength; i+=4)
-    {
-        if (currLength >= 4) {
-            currBlock = binNum.toString().slice(currLength-4, currLength);
-            binNum = binNum.toString().slice(0, currLength-4);
-            currLength -= 4;
+        // Construct formula string
+        formula += chunks + "<br>= ";
+        for (let i=0; i<result.length; i++)
+        {
+            formula += result[i] + " ";
         }
-        else {
-            currBlock = binNum.toString().slice(0, currLength);
+        formula += "<br>= " + result;
+        calculation.innerHTML = formula;
+
+        return result;
+    }
+    function octToBin(num)
+    {
+        let octNum = num;
+        let octNumLength = octNum.toString().length;
+        let formula = "";
+        let chunks = "";
+
+        // Convert
+        let result = octToDec(octNum);
+        result = decToBin(result);
+
+        // Output calculation
+        formula += octNum + "<br>= ";
+        for (let i=0; i < octNumLength; i++)
+        {
+            let currDigit = octNum[i];
+            formula += currDigit + " ";
         }
+        
+        let resLength = result.toString().length;
+        let tempResult = result;
+        for (let i=0; i < result.toString().length; i+=3)
+        {
+            if (resLength >= 3) {
+                currBlock = tempResult.toString().slice(resLength-3, resLength);
+                tempResult = tempResult.toString().slice(0, resLength-3);
+                resLength -= 3;
+            }
+            else {
+                currBlock = tempResult.toString().slice(0, resLength);
+            }
 
-        chunks = currBlock + " " + chunks;
-    }
-
-    // Construct formula string
-    formula += chunks + "<br>= ";
-    for (let i=0; i<result.length; i++)
-    {
-        formula += result[i] + " ";
-    }
-    formula += "<br>= " + result;
-    calculation.innerHTML = formula;
-
-    return result;
-}
-function octToBin(num)
-{
-    let octNum = num;
-    let octNumLength = octNum.toString().length;
-    let formula = "";
-    let chunks = "";
-
-    // Convert
-    let result = octToDec(octNum);
-    result = decToBin(result);
-
-    // Output calculation
-    formula += octNum + "<br>= ";
-    for (let i=0; i < octNumLength; i++)
-    {
-        let currDigit = octNum[i];
-        formula += currDigit + " ";
-    }
-    
-    let resLength = result.toString().length;
-    let tempResult = result;
-    for (let i=0; i < result.toString().length; i+=3)
-    {
-        if (resLength >= 3) {
-            currBlock = tempResult.toString().slice(resLength-3, resLength);
-            tempResult = tempResult.toString().slice(0, resLength-3);
-            resLength -= 3;
+            chunks = currBlock + " " + chunks;
         }
-        else {
-            currBlock = tempResult.toString().slice(0, resLength);
-        }
+        formula += "<br>= " + chunks;
+        formula += "<br>= " + result;
+        calculation.innerHTML = formula;    // Output calculation formula to DOM
 
-        chunks = currBlock + " " + chunks;
+        return result;
     }
-    formula += "<br>= " + chunks;
-    formula += "<br>= " + result;
-    calculation.innerHTML = formula;    // Output calculation formula to DOM
-
-    return result;
-}
-
-function hexToBin(num)
-{
-    let hexNum = num;
-    let hexNumLength = hexNum.toString().length;
-    let formula = "";
-    let chunks = "";
-
-    // Convert
-    let result = hexToDec(hexNum);
-    result = decToBin(result);
-
-    // Output calculation
-    formula += hexNum + "<br>= ";
-    for (let i=0; i < hexNumLength; i++)
+    function hexToBin(num)
     {
-        let currDigit = hexNum[i];
-        formula += currDigit + " ";
-    }
-    
-    let resLength = result.toString().length;
-    let tempResult = result;
-    for (let i=0; i < result.toString().length; i+=4)
-    {
-        if (resLength >= 4) {
-            currBlock = tempResult.toString().slice(resLength-4, resLength);
-            tempResult = tempResult.toString().slice(0, resLength-4);
-            resLength -= 4;
+        let hexNum = num;
+        let hexNumLength = hexNum.toString().length;
+        let formula = "";
+        let chunks = "";
+
+        // Convert
+        let result = hexToDec(hexNum);
+        result = decToBin(result);
+
+        // Output calculation
+        formula += hexNum + "<br>= ";
+        for (let i=0; i < hexNumLength; i++)
+        {
+            let currDigit = hexNum[i];
+            formula += currDigit + " ";
         }
-        else {
-            currBlock = tempResult.toString().slice(0, resLength);
+        
+        let resLength = result.toString().length;
+        let tempResult = result;
+        for (let i=0; i < result.toString().length; i+=4)
+        {
+            if (resLength >= 4) {
+                currBlock = tempResult.toString().slice(resLength-4, resLength);
+                tempResult = tempResult.toString().slice(0, resLength-4);
+                resLength -= 4;
+            }
+            else {
+                currBlock = tempResult.toString().slice(0, resLength);
+            }
+
+            chunks = currBlock + " " + chunks;
+        }
+        formula += "<br>= " + chunks;
+        formula += "<br>= " + result;
+        calculation.innerHTML = formula;    // Output calculation formula to DOM
+
+        return result;
+    }
+    function octToHex(num)
+    {
+        let octNum = num;
+        let octNumLength = octNum.toString().length;
+        let formula = "";
+        let chunks = "";
+        let result = octToBin(octNum);  // Convert oct to bin
+
+        // OUTPUT CALCULATION
+        // Print full oct num
+        formula += octNum + "<br>= ";    
+        
+        // Print digit-separated full oct num
+        for (let i=0; i < octNumLength; i++)    
+        {
+            let currDigit = octNum[i];
+            formula += currDigit + " ";
         }
 
-        chunks = currBlock + " " + chunks;
-    }
-    formula += "<br>= " + chunks;
-    formula += "<br>= " + result;
-    calculation.innerHTML = formula;    // Output calculation formula to DOM
+        // Print 3-bit-separated binary result
+        let resLength = result.toString().length;
+        let tempResult = result;
+        for (let i=0; i < result.toString().length; i+=3)   
+        {
+            if (resLength >= 3) {
+                currBlock = tempResult.toString().slice(resLength-3, resLength);
+                tempResult = tempResult.toString().slice(0, resLength-3);
+                resLength -= 3;
+            }
+            else {
+                currBlock = tempResult.toString().slice(0, resLength);
+            }
 
-    return result;
-}
-function octToHex(num)
-{
-    let octNum = num;
-    let octNumLength = octNum.toString().length;
-    let formula = "";
-    let chunks = "";
-    let result = octToBin(octNum);  // Convert oct to bin
-
-    // OUTPUT CALCULATION
-    // Print full oct num
-    formula += octNum + "<br>= ";    
-    
-    // Print digit-separated full oct num
-    for (let i=0; i < octNumLength; i++)    
-    {
-        let currDigit = octNum[i];
-        formula += currDigit + " ";
-    }
-
-    // Print 3-bit-separated binary result
-    let resLength = result.toString().length;
-    let tempResult = result;
-    for (let i=0; i < result.toString().length; i+=3)   
-    {
-        if (resLength >= 3) {
-            currBlock = tempResult.toString().slice(resLength-3, resLength);
-            tempResult = tempResult.toString().slice(0, resLength-3);
-            resLength -= 3;
+            chunks = currBlock + " " + chunks;
         }
-        else {
-            currBlock = tempResult.toString().slice(0, resLength);
-        }
+        formula += "<br>= " + chunks;    
 
-        chunks = currBlock + " " + chunks;
-    }
-    formula += "<br>= " + chunks;    
+        // Print 4-bit-separated binary result
+        resLength = result.toString().length;
+        tempResult = result;
+        chunks = "";
+        for (let i=0; i < result.toString().length; i+=4)   
+        {
+            if (resLength >= 4) {
+                currBlock = tempResult.toString().slice(resLength-4, resLength);
+                tempResult = tempResult.toString().slice(0, resLength-4);
+                resLength -= 4;
+            }
+            else {
+                currBlock = tempResult.toString().slice(0, resLength);
+            }
 
-    // Print 4-bit-separated binary result
-    resLength = result.toString().length;
-    tempResult = result;
-    chunks = "";
-    for (let i=0; i < result.toString().length; i+=4)   
-    {
-        if (resLength >= 4) {
-            currBlock = tempResult.toString().slice(resLength-4, resLength);
-            tempResult = tempResult.toString().slice(0, resLength-4);
-            resLength -= 4;
+            chunks = currBlock + " " + chunks;
         }
-        else {
-            currBlock = tempResult.toString().slice(0, resLength);
+        formula += "<br>= " + chunks;
+
+        // Convert bin to oct
+        result = binToHex(result);  
+
+        // Print digit-separated full oct num
+        resLength = result.toString().length;
+        tempResult = result;
+        formula += "<br>= ";
+        for (let i=0; i < resLength; i++)    
+        {
+            let currDigit = tempResult[i];
+            formula += currDigit + " ";
         }
 
-        chunks = currBlock + " " + chunks;
+        // Print and return final result
+        formula += "<br>= " + result;
+        calculation.innerHTML = formula;    
+
+        return result;
     }
-    formula += "<br>= " + chunks;
-
-    // Convert bin to oct
-    result = binToHex(result);  
-
-    // Print digit-separated full oct num
-    resLength = result.toString().length;
-    tempResult = result;
-    formula += "<br>= ";
-    for (let i=0; i < resLength; i++)    
+    function hexToOct(num)
     {
-        let currDigit = tempResult[i];
-        formula += currDigit + " ";
-    }
+        let hexNum = num;
+        let hexNumLength = hexNum.toString().length;
+        let formula = "";
+        let chunks = "";
+        let result = hexToBin(hexNum);  // Convert hex to bin
 
-    // Print and return final result
-    formula += "<br>= " + result;
-    calculation.innerHTML = formula;    
-
-    return result;
-}
-function hexToOct(num)
-{
-    let hexNum = num;
-    let hexNumLength = hexNum.toString().length;
-    let formula = "";
-    let chunks = "";
-    let result = hexToBin(hexNum);  // Convert hex to bin
-
-    // Output calculation
-    formula += hexNum + "<br>= ";           // print full hex num
-    for (let i=0; i < hexNumLength; i++)    // print digit-separated full hex num
-    {
-        let currDigit = hexNum[i];
-        formula += currDigit + " ";
-    }
-    
-    let resLength = result.toString().length;
-    let tempResult = result;
-    for (let i=0; i < result.toString().length; i+=4)   // print 4-bit-separated binary result
-    {
-        if (resLength >= 4) {
-            currBlock = tempResult.toString().slice(resLength-4, resLength);
-            tempResult = tempResult.toString().slice(0, resLength-4);
-            resLength -= 4;
+        // Output calculation
+        formula += hexNum + "<br>= ";           // print full hex num
+        for (let i=0; i < hexNumLength; i++)    // print digit-separated full hex num
+        {
+            let currDigit = hexNum[i];
+            formula += currDigit + " ";
         }
-        else {
-            currBlock = tempResult.toString().slice(0, resLength);
-        }
+        
+        let resLength = result.toString().length;
+        let tempResult = result;
+        for (let i=0; i < result.toString().length; i+=4)   // print 4-bit-separated binary result
+        {
+            if (resLength >= 4) {
+                currBlock = tempResult.toString().slice(resLength-4, resLength);
+                tempResult = tempResult.toString().slice(0, resLength-4);
+                resLength -= 4;
+            }
+            else {
+                currBlock = tempResult.toString().slice(0, resLength);
+            }
 
-        chunks = currBlock + " " + chunks;
-    }
-    formula += "<br>= " + chunks;
-
-    resLength = result.toString().length;
-    tempResult = result;
-    chunks = "";
-    for (let i=0; i < result.toString().length; i+=3)   // print 3-bit-separated binary result
-    {
-        if (resLength >= 3) {
-            currBlock = tempResult.toString().slice(resLength-3, resLength);
-            tempResult = tempResult.toString().slice(0, resLength-3);
-            resLength -= 3;
+            chunks = currBlock + " " + chunks;
         }
-        else {
-            currBlock = tempResult.toString().slice(0, resLength);
+        formula += "<br>= " + chunks;
+
+        resLength = result.toString().length;
+        tempResult = result;
+        chunks = "";
+        for (let i=0; i < result.toString().length; i+=3)   // print 3-bit-separated binary result
+        {
+            if (resLength >= 3) {
+                currBlock = tempResult.toString().slice(resLength-3, resLength);
+                tempResult = tempResult.toString().slice(0, resLength-3);
+                resLength -= 3;
+            }
+            else {
+                currBlock = tempResult.toString().slice(0, resLength);
+            }
+
+            chunks = currBlock + " " + chunks;
+        }
+        formula += "<br>= " + chunks;
+
+        result = binToOct(result);  // Convert bin to oct
+
+        resLength = result.toString().length;
+        tempResult = result;
+        formula += "<br>= ";
+        for (let i=0; i < resLength; i++)    // print digit-separated full oct num
+        {
+            let currDigit = tempResult[i];
+            formula += currDigit + " ";
         }
 
-        chunks = currBlock + " " + chunks;
+        formula += "<br>= " + result;
+        calculation.innerHTML = formula;    // print final result
+
+        return result;
     }
-    formula += "<br>= " + chunks;
-
-    result = binToOct(result);  // Convert bin to oct
-
-    resLength = result.toString().length;
-    tempResult = result;
-    formula += "<br>= ";
-    for (let i=0; i < resLength; i++)    // print digit-separated full oct num
-    {
-        let currDigit = tempResult[i];
-        formula += currDigit + " ";
-    }
-
-    formula += "<br>= " + result;
-    calculation.innerHTML = formula;    // print final result
-
-    return result;
-}
-
-
-
-
-
+/////
 
 
 // ACTION BUTTONS
@@ -960,9 +953,6 @@ function hexToOct(num)
         setType();
     }
 /////
-
-
-
 
 
 // DARK MODE
@@ -1048,7 +1038,7 @@ function hexToOct(num)
     }
 /////
 
-// OTHER HEADER BUTTONS
+// HEADER BUTTONS
     function backToWigginsnet() {
         window.open("https://www.wigginsnet.com", "_blank");
     }
