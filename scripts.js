@@ -1,27 +1,33 @@
 // VARIABLE DECLARATIONS
     // > Input center
-    let primaryIntType = document.getElementById("primary-int-type");
-    let secondaryIntType = document.getElementById("secondary-int-type");
+    // >> Titles/labels
     let primaryTitle = document.getElementById("primary-title");
     let secondaryTitle = document.getElementById("secondary-title");
-    // > > Buttons
-    let convertBtn = document.getElementById("convertBtn");
-    let swapBtn = document.getElementById("swap-btn");
     let primaryLabelText = document.getElementById("primary-label-text");
     let secondaryLabelText = document.getElementById("secondary-label-text");
+    // >> Inputs
+    let primaryIntType = document.getElementById("primary-int-type");
+    let secondaryIntType = document.getElementById("secondary-int-type");
     let intForm = document.getElementById("int-form");
     let intInput = document.getElementById("int-input");
-    // > Calculation container
     let result = document.getElementById("result");
+    // >> Buttons
+    let convertBtn = document.getElementById("convertBtn");
+    let swapBtn = document.getElementById("swap-btn");
+    // > Calculation container
+    // >> Calculation data
     let calculation = document.getElementById("calculation");
     let calculationData = document.getElementById("calculation-data");
-    let emptyMsg = document.getElementById("emptyMsg");
     let aboutText = document.getElementById("aboutText");
     let otherResultsCtnr = document.getElementById("otherResultsCtnr");
     let otherResult1 = document.getElementById("otherResult1");
     let otherResultLabel1 = document.getElementById("otherResultLabel1");
     let otherResult2 = document.getElementById("otherResult2");
     let otherResultLabel2 = document.getElementById("otherResultLabel2");
+    // >> Empty data/msg
+    let emptyMsg = document.getElementById("emptyMsg");
+    // let historyMsg = document.getElementById("history");
+    // let historyTxt = document.getElementById("historyTxt");
 //
 
 
@@ -238,6 +244,7 @@ function clearInput() {
 
     checkEmpty();
 }
+
 function checkEmpty() {
     if (window.sessionStorage.getItem("currentResult") === null || result.value === "") {
         otherResultsCtnr.style.display = "none";
