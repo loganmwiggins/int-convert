@@ -300,6 +300,7 @@ hr {
 .action-btns {
     display: flex;
     flex-flow: wrap;
+    gap: .5rem;
     margin-top: 4rem;
     margin-bottom: 2rem;
 }
@@ -313,7 +314,6 @@ hr {
     background: var(--button-color);
     color: var(--button-txt-color);
     padding: 1rem 2rem;
-    margin-right: 1rem;
     border: none;
     border-radius: 1rem;
     cursor: pointer;
@@ -506,6 +506,11 @@ hr {
         height: 70vh;
         height: 70svh;
     }
+    .btn {
+        flex: 1;
+        max-width: none;
+        justify-content: center;
+    }
 }
 
 
@@ -574,20 +579,10 @@ hr {
     .text-box,
     .calculation-box { font-size: 1.5rem; }
     .input-ctnr {
-        margin: 2rem 0;
-
         p { font-size: 1.25rem; }
     }
-    .action-btns { 
-        flex-flow: wrap;
-        gap: .5rem;
-    }
     .btn {
-        flex: 1;
-        max-width: none;
-        justify-content: center;
         font-size: 1.5rem;
-        margin-right: 0;
 
         img { max-width: 1.75rem; }
     }
@@ -608,6 +603,7 @@ hr {
         .input-box {
             min-width: 100%;
             max-width: 100%;
+            margin-bottom: 0;
         }
         #otherResultLabel1,
         #otherResultLabel2 { margin-bottom: 1.5rem; }
