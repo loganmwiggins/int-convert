@@ -191,10 +191,15 @@ body {
     /* Position the tooltip text */
     position: absolute;
     z-index: 1;
-    bottom: 100%;
+    top: 100%;
     left: 50%;
     margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+.tooltip-lg {
+    width: 400px;
+    margin-left: -200px;
+    padding: 5px;
 }
 
 hr { 
