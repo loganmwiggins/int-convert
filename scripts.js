@@ -26,45 +26,56 @@
     let otherResultLabel2 = document.getElementById("otherResultLabel2");
     // >> Empty data/msg
     let emptyMsg = document.getElementById("emptyMsg");
-    // let historyMsg = document.getElementById("history");
-    // let historyTxt = document.getElementById("historyTxt");
 //
 
 
 
 
-
-// ON LOAD
-    // * Remember integer types on refresh/submit
-    primaryIntType.value = sessionStorage.getItem("primaryType");
-    secondaryIntType.value = sessionStorage.getItem("secondaryType");
-
-    // * Set text of elements on screen (when new dropdown type is selected)
+// ON LOAD {}
+    fillDropdowns();
     setType();
-
-    // * Remember input and results on refresh/submit
-    intInput.value = sessionStorage.getItem("currentInput");
-    result.value = sessionStorage.getItem("currentResult");
-    calculation.innerHTML = sessionStorage.getItem("currentCalculation");
-    aboutText.innerHTML = sessionStorage.getItem("currentDescription");
-    otherResult1.innerHTML = sessionStorage.getItem("otherResult1");
-    otherResult2.innerHTML = sessionStorage.getItem("otherResult2");
-
-    // * If values are cleared, hide calculation data and show buffer
-    checkEmpty();
+    fillInputAndResults();
+    checkEmpty();               // If values are cleared, hide calculation data and show buffer
 //
+
 
 
 // FUNCTIONS
 intForm.addEventListener("submit", (e) => {
     fillOtherResultValues();
     convertInput();
+    setSessionVars();
+});
+
+function setSessionVars() 
+{
+    // * Input and result
     window.sessionStorage.setItem("currentInput", intInput.value);
     window.sessionStorage.setItem("currentResult", result.value);
-    window.sessionStorage.setItem("currentCalculation", calculation.innerHTML);  
-    window.sessionStorage.setItem("currentDescription", aboutText.innerHTML);  window.sessionStorage.setItem("otherResult1", otherResult1.innerHTML);
+    // * Calculation data
+    window.sessionStorage.setItem("currentCalculation", calculation.innerHTML);
+    window.sessionStorage.setItem("currentDescription", aboutText.innerHTML);
+    window.sessionStorage.setItem("otherResult1", otherResult1.innerHTML);
     window.sessionStorage.setItem("otherResult2", otherResult2.innerHTML);
-});
+}
+
+function fillDropdowns() 
+{
+    // * Set integer types (dropdown options) to session vars
+    primaryIntType.value = sessionStorage.getItem("primaryType");
+    secondaryIntType.value = sessionStorage.getItem("secondaryType");
+}
+
+function fillInputAndResults()
+{
+    // * Set input and results to session vars
+    intInput.value = sessionStorage.getItem("currentInput");
+    result.value = sessionStorage.getItem("currentResult");
+    calculation.innerHTML = sessionStorage.getItem("currentCalculation");
+    aboutText.innerHTML = sessionStorage.getItem("currentDescription");
+    otherResult1.innerHTML = sessionStorage.getItem("otherResult1");
+    otherResult2.innerHTML = sessionStorage.getItem("otherResult2");
+}
 
 function setType() 
 {
@@ -85,7 +96,6 @@ function setType()
     primaryLabelText.innerHTML = primaryIntType.value;
     secondaryLabelText.innerHTML = secondaryIntType.value;
     fillOtherResultLabels();
-    if (primaryIntType.value)
 
     // Save types in session storage AND 
     window.sessionStorage.setItem("primaryType", primaryIntType.value);
@@ -246,8 +256,33 @@ function clearInput() {
     checkEmpty();
 }
 
+// function clearSession() {
+//     // * Clear session vars
+//     window.sessionStorage.setItem("primaryType", null);
+//     window.sessionStorage.setItem("secondaryType", null);
+//     window.sessionStorage.setItem("currentInput", null);
+//     window.sessionStorage.setItem("currentResult", null);
+//     window.sessionStorage.setItem("currentCalculation", "");
+//     window.sessionStorage.setItem("currentDescription", "");
+//     window.sessionStorage.setItem("otherResult1", "");
+//     window.sessionStorage.setItem("otherResult2", "");
+
+//     // * Clear UI info
+//     primaryIntType.value = null;
+//     secondaryIntType.value = null;
+//     primaryTitle.innerHTML = "";
+//     secondaryTitle.innerHTML = "";
+//     intInput.value = "";
+//     result.value = "";
+//     calculation.innerHTML = "";
+//     otherResult1.innerHTML = "";
+//     otherResult2.innerHTML = "";
+
+//     checkEmpty();
+// }
+
 function checkEmpty() {
-    if (window.sessionStorage.getItem("currentResult") === null || result.value === "") {
+    if (window.sessionStorage.getItem("currentResult") == null || result.value === "") {
         otherResultsCtnr.style.display = "none";
         calculationData.style.display = "none";
         emptyMsg.style.display = "block";
