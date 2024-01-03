@@ -285,7 +285,7 @@ function checkEmpty() {
     if (window.sessionStorage.getItem("currentResult") == null || result.value === "") {
         otherResultsCtnr.style.display = "none";
         calculationData.style.display = "none";
-        emptyMsg.style.display = "block";
+        emptyMsg.style.display = "flex";
     }
     else {
         otherResultsCtnr.style.display = "block";

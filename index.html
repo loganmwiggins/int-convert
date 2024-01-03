@@ -117,25 +117,11 @@
                     <h3>Conversion Info</h3>
                 </div>
                 <div class="main-ctnr-body">
-                    <div class="empty-msg" id="emptyMsg">
-                        <!-- <p class="empty-btn" id="history">
-                            Your last conversion was: <br>
-                            <span id="historyTxt"></span>
-                        </p> -->
-                        <p class="empty-btn" onclick="focusInput()">
+                    <div class="empty-msg" id="emptyMsg" onclick="focusInput()">
+                        <p class="empty-btn">
                             Please make a new conversion to see calculation data
                         </p>
-                        <div class="lds-grid">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
+                        <img src="assets/loading-loop.gif" class="loading-loop" draggable="false">
                     </div>
                     <!--  -->
                     <div id="calculation-data">

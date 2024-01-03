@@ -16,6 +16,7 @@
 :root {
     --primary-color: rgb(255, 255, 255);
     --secondary-color: rgb(0, 0, 0);
+    --accent-color: rgb(250, 55, 104);
     --window-color: rgb(245, 245, 245);
     --ctnr-gradient: linear-gradient(to bottom,
         rgb(255,255,255),
@@ -350,13 +351,15 @@ hr {
     margin-top: .5rem;
 }
 
-.empty-msg {    
+.empty-msg {   
+    align-items: center;
+    cursor: pointer;
+
     p { margin-bottom: 1.5rem; }
     img { 
         width: 75%; 
         border-radius: 1rem;
     }
-    
 }
 .empty-btn {
     max-width: fit-content;
@@ -369,7 +372,6 @@ hr {
     margin-left: 1rem;
     border: none;
     border-radius: 1rem;
-    cursor: pointer;
 }
 .empty-btn::before {
     content: "";
@@ -380,6 +382,10 @@ hr {
     border-right: 26px solid var(--button-color);
     border-bottom: 13px solid transparent;
     transform: translateX(-3.5rem);
+}
+.loading-loop {
+    max-width: 5rem;
+    margin: 0 0 1.5rem 1rem;
 }
 /* LOADING.IO */
 .lds-grid {
