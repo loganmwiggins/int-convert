@@ -987,6 +987,12 @@ function fillOtherResultLabels() {
         secondaryIntType.value = temp;
         setType();
     }
+    function focusInput() 
+    {
+        if (primaryIntType.value == "") { primaryIntType.focus(); }
+        else if (secondaryIntType.value == "") { secondaryIntType.focus(); }
+        else { intInput.focus(); }
+    }
 /////
 
 
