@@ -514,6 +514,28 @@ hr {
 }
 
 
+.footer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 50%;
+    bottom: 0;
+    right: 0;
+    padding: 2rem 4rem;
+    font-size: 1.5rem;
+
+    a,
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+        color: var(--border-color);
+        text-decoration: none;
+    }
+}
+
+
 
 
 
@@ -552,11 +574,13 @@ hr {
         /* margin-bottom: 2rem; */
     }
     .main-ctnr {
-        height: 100%;
+        height: fit-content;
+        min-height: fit-content;
         overflow-x: visible;
         overflow-y: visible;
-        min-height: fit-content;
-        max-height: fit-content;
+    }
+    .footer {
+        display: none;
     }
 }
 
