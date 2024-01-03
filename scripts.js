@@ -14,6 +14,7 @@
     // >> Buttons
     let convertBtn = document.getElementById("convertBtn");
     let swapBtn = document.getElementById("swap-btn");
+    let aboutTooltip = document.getElementById("aboutTooltip");
     // > Calculation container
     // >> Calculation data
     let calculation = document.getElementById("calculation");
