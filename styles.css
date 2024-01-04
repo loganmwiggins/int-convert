@@ -16,7 +16,7 @@
 :root {
     --primary-color: rgb(255, 255, 255);
     --secondary-color: rgb(0, 0, 0);
-    --accent-color: rgb(250, 55, 104);
+    --accent-color: #fa3768;
     --window-color: rgb(245, 245, 245);
     --ctnr-gradient: linear-gradient(to bottom,
         rgb(255,255,255),
@@ -74,8 +74,9 @@ html {
     min-height: 100vh;
     min-height: 100svh;
     min-width: 100vw;
+    max-width: 100vw;
     z-index: -1;
-    opacity: .75;
+    object-fit: cover;
 }
 input {
     display: flex;
@@ -655,7 +656,7 @@ hr {
         margin-left: -175px;
         background: var(--accent-color);
         font-family: "Poppins-Regular";
-        box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.501);
+        box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
         animation: fadeIn 1s;
     }
     @keyframes fadeIn {
