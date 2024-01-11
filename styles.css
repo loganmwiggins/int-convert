@@ -12,7 +12,7 @@
     src: url(assets/fonts/Poppins/Poppins-Bold.ttf);
 }
 
-/* COLOR VARS */
+/* COLORS */
 :root {
     --primary-color: rgb(255, 255, 255);
     --secondary-color: rgb(0, 0, 0);
@@ -120,7 +120,7 @@ input {
 }
 .readonly { 
     background: var(--input-readonly-color); 
-    cursor:auto;
+    cursor: auto;
 }
 
 
@@ -215,7 +215,6 @@ hr {
 /* Window Main */
 .main {
     display: flex;
-    gap: 2rem;
     height: 100%;
 }
 .main-ctnr {
@@ -241,6 +240,9 @@ hr {
     padding: 1rem 2rem;
 }
 .main-ctnr-body { padding: 1rem 2rem; }
+
+.conversion-ctnr { margin-right: 1rem; }
+.calculation-ctnr { margin-left: 1rem; }
 
 .selection {
     display: flex;
@@ -389,74 +391,6 @@ hr {
     max-width: 5rem;
     margin: 0 0 1.5rem 1rem;
 }
-/* LOADING.IO */
-.lds-grid {
-    display: inline-block;
-    position: relative;
-    width: 60px;
-    height: 60px;
-}
-.lds-grid div {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgb(243, 77, 119);
-    animation: lds-grid 2.5s linear infinite;
-}
-.lds-grid div:nth-child(1) {
-    top: 8px;
-    left: 8px;
-    animation-delay: 0s;
-}
-.lds-grid div:nth-child(2) {
-    top: 8px;
-    left: 24px;
-    animation-delay: -0.4s;
-}
-.lds-grid div:nth-child(3) {
-    top: 8px;
-    left: 40px;
-    animation-delay: -0.8s;
-}
-.lds-grid div:nth-child(4) {
-    top: 24px;
-    left: 8px;
-    animation-delay: -0.4s;
-}
-.lds-grid div:nth-child(5) {
-    top: 24px;
-    left: 24px;
-    animation-delay: -0.8s;
-}
-.lds-grid div:nth-child(6) {
-    top: 24px;
-    left: 40px;
-    animation-delay: -1.2s;
-}
-.lds-grid div:nth-child(7) {
-    top: 40px;
-    left: 8px;
-    animation-delay: -0.8s;
-}
-.lds-grid div:nth-child(8) {
-    top: 40px;
-    left: 24px;
-    animation-delay: -1.2s;
-}
-.lds-grid div:nth-child(9) {
-    top: 40px;
-    left: 40px;
-    animation-delay: -1.6s;
-}
-@keyframes lds-grid {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-}
 
 
 .calculation-box {
@@ -515,7 +449,6 @@ hr {
     }
 }
 
-
 .footer {
     position: absolute;
     display: flex;
@@ -542,11 +475,6 @@ hr {
 
 
 
-
-
-
-
-
 /* RESPONSIVE DESIGN: LAPTOPS */
 /* ---------------------------------------------------------------------- */
 @media (max-width: 1200px) {
@@ -560,7 +488,10 @@ hr {
         max-width: none;
         justify-content: center;
     }
+    #otherResultLabel1,
+    #otherResultLabel2 { margin-bottom: 1.5rem; }
 }
+
 
 
 /* RESPONSIVE DESIGN: TABLETS */
@@ -574,19 +505,19 @@ hr {
         overflow-y: scroll;
     }
     body::-webkit-scrollbar { display: none; }
-    .main { 
-        flex-direction: column; 
-        /* margin-bottom: 2rem; */
-    }
+    .main { flex-direction: column; }
     .main-ctnr {
         height: fit-content;
         min-height: fit-content;
         overflow-x: visible;
         overflow-y: visible;
     }
-    .footer {
-        display: none;
+    .conversion-ctnr { 
+        margin-right: 0; 
+        margin-bottom: 2rem;
     }
+    .calculation-ctnr { margin-left: 0; }
+    .footer { display: none; }
 }
 
 
@@ -706,7 +637,5 @@ hr {
             max-width: 100%;
             margin-bottom: 0;
         }
-        #otherResultLabel1,
-        #otherResultLabel2 { margin-bottom: 1.5rem; }
     }
 }
