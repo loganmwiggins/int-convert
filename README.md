@@ -10,6 +10,7 @@ IntConvert is extremely intuitive and simple to use. Navigate to [www.wigginsnet
 1. Begin by selecting which integer type you want to convert FROM and TO with the dropdowns
 2. Next, enter a valid integer in the input box and click the Convert button (or press enter)
 3. See your result in the field below, and learn more about your conversion in the Conversion Info window
+
 And that's it! Not only does the website give you the conversion result, but it also teaches you how to make the conversion on your own by providing the formula and a detailed description of how to do it.
 
 ### Enjoy
