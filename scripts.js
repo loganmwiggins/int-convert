@@ -1,22 +1,22 @@
 // VARIABLE DECLARATIONS
-    // > Input center
-    // >> Titles/labels
+    // * Input center
+    // ** Titles/labels
     let primaryTitle = document.getElementById("primary-title");
     let secondaryTitle = document.getElementById("secondary-title");
     let primaryLabelText = document.getElementById("primary-label-text");
     let secondaryLabelText = document.getElementById("secondary-label-text");
-    // >> Inputs
+    // ** Inputs
     let primaryIntType = document.getElementById("primary-int-type");
     let secondaryIntType = document.getElementById("secondary-int-type");
     let intForm = document.getElementById("int-form");
     let intInput = document.getElementById("int-input");
     let result = document.getElementById("result");
-    // >> Buttons
+    // ** Buttons
     let convertBtn = document.getElementById("convertBtn");
     let swapBtn = document.getElementById("swap-btn");
     let aboutTooltip = document.getElementById("aboutTooltip");
-    // > Calculation container
-    // >> Calculation data
+    // * Calculation container
+    // ** Calculation data
     let calculation = document.getElementById("calculation");
     let calculationData = document.getElementById("calculation-data");
     let aboutText = document.getElementById("aboutText");
@@ -25,7 +25,7 @@
     let otherResultLabel1 = document.getElementById("otherResultLabel1");
     let otherResult2 = document.getElementById("otherResult2");
     let otherResultLabel2 = document.getElementById("otherResultLabel2");
-    // >> Empty data/msg
+    // ** Empty data/msg
     let emptyMsg = document.getElementById("emptyMsg");
 //
 
@@ -355,7 +355,6 @@ function convertInput() {
     // Hexadecimal to Octal
     else if (primaryIntType.value == "Hexadecimal" && secondaryIntType.value == "Octal") {
         result.value = hexToOct(intInput.value);
-        
         aboutText.innerHTML = "Convert each hex digit to 4 binary digits and then convert each 3 binary digits to octal digits (see conversion tables below).<br><br>Convert every hex digit (start with lowest digit) to 4 binary digits, with this table:<br><table class='about-table'><tr><td>Hex<sub>(16)</sub></td><td>Binary<sub>(2)</sub></td></tr><tr><td>0</td><td>0000</td></tr><tr><td>1</td><td>0001</td></tr><tr><td>2</td><td>0010</td></tr><tr><td>3</td><td>0011</td></tr><tr><td>4</td><td>0100</td></tr><tr><td>5</td><td>0101</td></tr><tr><td>6</td><td>0110</td></tr><tr><td>7</td><td>0111</td></tr><tr><td>8</td><td>1000</td></tr><tr><td>9</td><td>1001</td></tr><tr><td>A</td><td>1010</td></tr><tr><td>B</td><td>1011</td></tr><tr><td>C</td><td>1100</td></tr><tr><td>D</td><td>1101</td></tr><tr><td>E</td><td>1110</td></tr><tr><td>F</td><td>1111</td></tr></table><br>Then convert every 3 binary digits (from bit 0) to 1 octal digit, with this table:<br><table class='about-table'><tr><td>Binary<sub>(2)</sub></td><td>Octal<sub>(8)</sub></td></tr><tr><td>000</td><td>0</td></tr><tr><td>001</td><td>1</td></tr><tr><td>010</td><td>2</td></tr><tr><td>011</td><td>3</td></tr><tr><td>100</td><td>4</td></tr><tr><td>101</td><td>5</td></tr><tr><td>110</td><td>6</td></tr><tr><td>111</td><td>7</td></tr></table>";
     } 
     else { result.value = intInput.value; }
@@ -981,7 +980,7 @@ function fillOtherResultLabels() {
 /////
 
 
-// ACTION BUTTONS
+// BUTTONS
     function swapTypes() {
         let temp = primaryIntType.value;
         primaryIntType.value = secondaryIntType.value;
@@ -993,6 +992,9 @@ function fillOtherResultLabels() {
         if (primaryIntType.value == "") { primaryIntType.focus(); }
         else if (secondaryIntType.value == "") { secondaryIntType.focus(); }
         else { intInput.focus(); }
+    }
+    function backToWigginsnet() {
+        window.open("https://www.wigginsnet.com", "_blank");
     }
 /////
 
@@ -1077,11 +1079,5 @@ function fillOtherResultLabels() {
             swapBtn2Icon.classList.add("filter-grey");
             clearBtnIcon.classList.add("filter-grey");
         }
-    }
-/////
-
-// HEADER BUTTONS
-    function backToWigginsnet() {
-        window.open("https://www.wigginsnet.com", "_blank");
     }
 /////
