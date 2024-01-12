@@ -107,7 +107,6 @@ function setType()
     clearInput();       // Clear out input fields
 }
 
-
 function setInputPattern()
 {
     if (primaryIntType.value == "Binary") {
@@ -246,41 +245,6 @@ function hideDropdownOpts()
         }
     }
 }
-
-function clearInput() {
-    intInput.value = "";
-    result.value = "";
-    calculation.innerHTML = "";
-    otherResult1.innerHTML = "";
-    otherResult2.innerHTML = "";
-
-    checkEmpty();
-}
-
-// function clearSession() {
-//     // * Clear session vars
-//     window.sessionStorage.setItem("primaryType", null);
-//     window.sessionStorage.setItem("secondaryType", null);
-//     window.sessionStorage.setItem("currentInput", null);
-//     window.sessionStorage.setItem("currentResult", null);
-//     window.sessionStorage.setItem("currentCalculation", "");
-//     window.sessionStorage.setItem("currentDescription", "");
-//     window.sessionStorage.setItem("otherResult1", "");
-//     window.sessionStorage.setItem("otherResult2", "");
-
-//     // * Clear UI info
-//     primaryIntType.value = null;
-//     secondaryIntType.value = null;
-//     primaryTitle.innerHTML = "";
-//     secondaryTitle.innerHTML = "";
-//     intInput.value = "";
-//     result.value = "";
-//     calculation.innerHTML = "";
-//     otherResult1.innerHTML = "";
-//     otherResult2.innerHTML = "";
-
-//     checkEmpty();
-// }
 
 function checkEmpty() {
     if (window.sessionStorage.getItem("currentResult") == null || result.value === "") {
@@ -987,14 +951,23 @@ function fillOtherResultLabels() {
         secondaryIntType.value = temp;
         setType();
     }
+    function clearInput() {
+        intInput.value = "";
+        result.value = "";
+        calculation.innerHTML = "";
+        otherResult1.innerHTML = "";
+        otherResult2.innerHTML = "";
+    
+        checkEmpty();
+    }
     function focusInput() 
     {
         if (primaryIntType.value == "") { primaryIntType.focus(); }
         else if (secondaryIntType.value == "") { secondaryIntType.focus(); }
         else { intInput.focus(); }
     }
-    function backToWigginsnet() {
-        window.open("https://www.wigginsnet.com", "_blank");
+    function toGitHub() {
+        window.open("https://github.com/loganmwiggins/int-convert", "_blank");
     }
 /////
 
@@ -1003,7 +976,7 @@ function fillOtherResultLabels() {
     let darkMode = localStorage.getItem("darkMode");    // Declare local storage var for dark mode
 
     // Declare site header buttons and icons
-    let appsIcon = document.getElementById("appsIcon");
+    let gitIcon = document.getElementById("gitIcon");
     let infoIcon = document.getElementById("infoIcon");
     let themeBtn = document.getElementById("themeBtn");
     let themeIcon = document.getElementById("themeIcon");
@@ -1033,7 +1006,7 @@ function fillOtherResultLabels() {
         enableDarkMode();
         // Site button icons
         swapBtn.classList.add("filter-white");
-        appsIcon.classList.add("filter-white");
+        gitIcon.classList.add("filter-white");
         infoIcon.classList.add("filter-white");
         themeIcon.classList.add("filter-white");
         // Body button icons
@@ -1053,7 +1026,7 @@ function fillOtherResultLabels() {
             enableDarkMode();
             // Site button icons
             swapBtn.classList.add("filter-white");
-            appsIcon.classList.add("filter-white");
+            gitIcon.classList.add("filter-white");
             infoIcon.classList.add("filter-white");
             themeIcon.classList.add("filter-white");
             // Body button icons
@@ -1068,7 +1041,7 @@ function fillOtherResultLabels() {
             disableDarkMode();
             // Site button icons
             swapBtn.classList.remove("filter-white");
-            appsIcon.classList.remove("filter-white");
+            gitIcon.classList.remove("filter-white");
             infoIcon.classList.remove("filter-white");
             themeIcon.classList.remove("filter-white");
             // Body button icons
