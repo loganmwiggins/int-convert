@@ -3,7 +3,7 @@
 ### [www.wigginsnet.com/int-convert](https://www.wigginsnet.com/int-convert)
 
 ### Description
-IntConvert was developed with the goal of creating a simple, intuitive, and well-designed application for converting integers with different bases. As a result, with this web app, users are able to easily make accurate conversions between the binary, octal, decimal, and hexadecimal number systems.
+IntConvert was developed with the goal of creating a simple, intuitive, and well-designed application for converting integers with different bases. As a result, with this website, users are able to easily make accurate conversions between the binary, octal, decimal, and hexadecimal number systems. If you're interested in learning more about the process of making this web application, check out this YouTube video: [IntConvert App Demo](https://youtu.be/-jC8TMtv1Ak)!
 
 ### How To Use
 IntConvert is extremely intuitive and simple to use. Navigate to [www.wigginsnet.com/int-convert](https://www.wigginsnet.com/int-convert) to get started!
